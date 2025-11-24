@@ -1,12 +1,12 @@
 # Fdb version 3
-["biber main"] 1763927321 "main.bcf" "main.bbl" "main" 1763927563
-  "main.bcf" 1763927563 105976 243f191bf106de51af41285173184f6b "pdflatex"
+["biber main"] 1763983839 "main.bcf" "main.bbl" "main" 1763983841
+  "main.bcf" 1763983841 106328 7b126f030165e149d36a24a58ca9f377 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1763927562 "/home/yvhem/OneDrive/Uni/AIRO/Modeling and Control of Multi-Rotor UAVs/ingenuity_dynamic_feedback_linearization/latex/main.tex" "main.pdf" "main" 1763927563
+["pdflatex"] 1763983840 "/home/yvhem/OneDrive/Uni/AIRO/Modeling and Control of Multi-Rotor UAVs/ingenuity_dynamic_feedback_linearization/latex/main.tex" "main.pdf" "main" 1763983841
   "/etc/texmf/web2c/texmf.cnf" 1754997670 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/yvhem/OneDrive/Uni/AIRO/Modeling and Control of Multi-Rotor UAVs/ingenuity_dynamic_feedback_linearization/latex/main.tex" 1763927562 1112 2994a73b42e139b124bb135317c6ea89 ""
+  "/home/yvhem/OneDrive/Uni/AIRO/Modeling and Control of Multi-Rotor UAVs/ingenuity_dynamic_feedback_linearization/latex/main.tex" 1763983837 1068 b4b3aa111b1bec2f18485a11ff2434ea ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm" 1136768653 2172 fd0c924230362ff848a33632ed45dc23 ""
@@ -131,14 +131,19 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1754997676 128028 f533b797fba58d231669ea19e894e23e ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1754997685 1405648 5d1523ff0fa4f69f8e5635a348ab2452 ""
   "images/logo.png" 1763605008 14404 ff316d7cc09e8e3ec5dd244128869bde ""
-  "main.aux" 1763927563 1256 8180c6d19257190c5b32b775f6ff25bc "pdflatex"
-  "main.bbl" 1763927322 466 ee04f40f768daeed26442158e95aba61 "biber main"
-  "main.out" 1763927563 301 daca3012173f3d0703ccca97d3ea5ad6 "pdflatex"
-  "main.run.xml" 1763927563 2395 1575f6bbc0c6be1b1dbf4e9f7ecaa5c6 "pdflatex"
-  "main.tex" 1763927562 1112 2994a73b42e139b124bb135317c6ea89 ""
-  "main.toc" 1763927563 206 748d40e3fce76c0485a0f29d521ee74a "pdflatex"
-  "sections/0_titlePage.tex" 1763927269 595 924e73fd5bb039f3327226d5b6df4976 ""
-  "sections/1_intro.tex" 1763927300 83 3a36c43ff29436ddfbf02e86bde2391c ""
+  "main.aux" 1763983841 4502 a64d95812197b3dc6a25a83a1b70f8fe "pdflatex"
+  "main.bbl" 1763983840 466 ee04f40f768daeed26442158e95aba61 "biber main"
+  "main.out" 1763983841 3379 a25d9b516576fd8d14d407470efcc54f "pdflatex"
+  "main.run.xml" 1763983841 2395 1575f6bbc0c6be1b1dbf4e9f7ecaa5c6 "pdflatex"
+  "main.tex" 1763983837 1068 b4b3aa111b1bec2f18485a11ff2434ea ""
+  "main.toc" 1763983841 1878 a86d7da1b90aba4d4899c2f1457e9dca "pdflatex"
+  "sections/0_titlePage.tex" 1763929690 595 864f9f2ef667666331f34b5bae03e552 ""
+  "sections/1_intro.tex" 1763982854 375 0901f54999762a7e08c7024e84bbe468 ""
+  "sections/2_dynamics.tex" 1763982916 48 b19626e9f3da3d44faa3319e66ddeb21 ""
+  "sections/3_control.tex" 1763983104 634 2efe892ad4d332128c893f26abd892c8 ""
+  "sections/4_setup.tex" 1763983190 286 a9bfe573b7fdc94e5fbcc8f0562c6b8c ""
+  "sections/5_results.tex" 1763983628 330 e098b35a577a438fe304c96f8883198b ""
+  "sections/6_conclusion.tex" 1763983651 83 50a793016fde0a307ac517941a20c2ea ""
   (generated)
   "main.aux"
   "main.bcf"

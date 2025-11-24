@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.8.12)  23 NOV 2025 20:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.8.12)  24 NOV 2025 12:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -712,7 +712,7 @@ Package biblatex Info: ... file 'main.bbl' found.
 Package biblatex Info: Reference section=0 on input line 34.
 Package biblatex Info: Reference segment=0 on input line 34.
  (./sections/0_titlePage.tex
-<images/logo.png, id=16, 247.92625pt x 72.27pt>
+<images/logo.png, id=104, 247.92625pt x 72.27pt>
 File: images/logo.png Graphic file (type png)
 <use images/logo.png>
 Package pdftex.def Info: images/logo.png  used on input line 5.
@@ -739,28 +739,52 @@ l.1 \chapter
 
 ]
 Chapter 1.
-) [2
+) (./sections/2_dynamics.tex [2
+
+]
+Chapter 2.
+) (./sections/3_control.tex [3
+
+]
+Chapter 3.
+) (./sections/4_setup.tex [4
+
+]
+Chapter 4.
+) (./sections/5_results.tex [5
+
+]
+Chapter 5.
+) (./sections/6_conclusion.tex [6
+
+]
+Chapter 6.
+)
+
+LaTeX Warning: Empty bibliography on input line 47.
+
+[7
 
 ] (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: DACA3012173F3D0703CCCA97D3EA5AD6;301.
+(rerunfilecheck)             Checksum: A25D9B516576FD8D14D407470EFCC54F;3379.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 20352 strings out of 480247
- 354537 string characters out of 5896151
- 1055599 words of memory out of 5000000
- 38030 multiletter control sequences out of 15000+600000
+ 20436 strings out of 480247
+ 355854 string characters out of 5896151
+ 1062792 words of memory out of 5000000
+ 38072 multiletter control sequences out of 15000+600000
  485728 words of font info for 61 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  67i,5n,77p,1169b,805s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (3 pages, 44687 bytes).
+Output written on main.pdf (8 pages, 55140 bytes).
 PDF statistics:
- 58 PDF objects out of 1000 (max. 8388607)
- 44 compressed objects within 1 object stream
- 7 named destinations out of 1000 (max. 500000)
- 30 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 195 PDF objects out of 1000 (max. 8388607)
+ 175 compressed objects within 2 object streams
+ 34 named destinations out of 1000 (max. 500000)
+ 206 words of extra memory for PDF output out of 10000 (max. 10000000)
 
