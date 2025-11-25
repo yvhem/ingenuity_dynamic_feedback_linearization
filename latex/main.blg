@@ -1,9 +1,15 @@
 [0] Config.pm:307> INFO - This is Biber 2.17
 [0] Config.pm:310> INFO - Logfile is 'main.blg'
-[105] biber:340> INFO - === Mon Nov 24, 2025, 12:30:40
-[128] Biber.pm:418> INFO - Reading 'main.bcf'
-[235] Biber.pm:972> INFO - Found 0 citekeys in bib section 0
-[256] bbl.pm:654> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[256] bbl.pm:757> INFO - Output to main.bbl
-[257] Biber.pm:130> WARN - The file 'main.bcf' does not contain any citations!
-[257] Biber.pm:132> INFO - WARNINGS: 1
+[77] biber:340> INFO - === Tue Nov 25, 2025, 07:26:33
+[91] Biber.pm:418> INFO - Reading 'main.bcf'
+[165] Biber.pm:972> INFO - Found 5 citekeys in bib section 0
+[181] Biber.pm:4383> INFO - Processing section 0
+[192] Biber.pm:4574> INFO - Looking for bibtex file 'ref.bib' for section 0
+[193] bibtex.pm:1713> INFO - LaTeX decoding ...
+[202] bibtex.pm:1518> INFO - Found BibTeX data source 'ref.bib'
+[292] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[292] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[292] Biber.pm:4203> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
+[292] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
+[300] bbl.pm:654> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[306] bbl.pm:757> INFO - Output to main.bbl

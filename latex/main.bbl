@@ -16,5 +16,265 @@
   {}
 \endgroup
 
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{wiki:ingenuity}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=b6aea1a416c89509a7df1cbb69249cb6}{%
+           family={{Wikipedia contributors}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{fullhash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{bibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorbibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authornamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorfullhash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[Online; accessed 25-Nov-2025]}
+      \field{title}{Ingenuity (helicopter) --- {Wikipedia}{,} The Free Encyclopedia}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/Ingenuity_(helicopter)
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/Ingenuity_(helicopter)
+      \endverb
+    \endentry
+    \entry{Grip2019}{inproceedings}{}
+      \name{author}{13}{}{%
+        {{hash=3ae6c2aa3dbf71e5190af11d12ba0372}{%
+           family={Grip},
+           familyi={G\bibinitperiod},
+           given={Havard\bibnamedelima F.},
+           giveni={H\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=6bcf3f650eedeb22ee5f63f5c42706cc}{%
+           family={Balaram},
+           familyi={B\bibinitperiod},
+           given={Bob},
+           giveni={B\bibinitperiod}}}%
+        {{hash=c352c505f3bb6c6bdbf12e8e3c835592}{%
+           family={Canham},
+           familyi={C\bibinitperiod},
+           given={Timothy},
+           giveni={T\bibinitperiod}}}%
+        {{hash=5dc9c0a4ca4577d85bc41b6a74045ca9}{%
+           family={Clark},
+           familyi={C\bibinitperiod},
+           given={Courtney},
+           giveni={C\bibinitperiod}}}%
+        {{hash=1937ad6f32c1f9fc9ee4b633c848812e}{%
+           family={Ekblaw},
+           familyi={E\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=86934701d81d61b8c885b393e12d1eb1}{%
+           family={Johnson},
+           familyi={J\bibinitperiod},
+           given={Wayne},
+           giveni={W\bibinitperiod}}}%
+        {{hash=38c6a1d0ac58687d5c29299c4d84cfe6}{%
+           family={Koning},
+           familyi={K\bibinitperiod},
+           given={Willem},
+           giveni={W\bibinitperiod}}}%
+        {{hash=407e55958acdbca0724ff179c4390406}{%
+           family={Ludwinski},
+           familyi={L\bibinitperiod},
+           given={Mimi},
+           giveni={M\bibinitperiod}}}%
+        {{hash=8ffd3678eb3b37bd578df7d7d7381004}{%
+           family={San\bibnamedelima Martin},
+           familyi={S\bibinitperiod\bibinitdelim M\bibinitperiod},
+           given={Alejandro},
+           giveni={A\bibinitperiod}}}%
+        {{hash=fb0daa9491f644f959a3322eea838274}{%
+           family={Smyth},
+           familyi={S\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod}}}%
+        {{hash=596714aec8a57e935871ad43c19b0dff}{%
+           family={Tan},
+           familyi={T\bibinitperiod},
+           given={Kelvin},
+           giveni={K\bibinitperiod}}}%
+        {{hash=dc6a51f2937305b0ebc98d29c20d8122}{%
+           family={Wendler},
+           familyi={W\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod}}}%
+        {{hash=6824cbeb891302ba8b285dcbb2dc4d73}{%
+           family={Winters},
+           familyi={W\bibinitperiod},
+           given={Allen},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{0c30b462e8a8c32c6be5ae26e8a09b54}
+      \strng{fullhash}{170bb9cef54d995819ebe076c2631034}
+      \strng{bibnamehash}{0c30b462e8a8c32c6be5ae26e8a09b54}
+      \strng{authorbibnamehash}{0c30b462e8a8c32c6be5ae26e8a09b54}
+      \strng{authornamehash}{0c30b462e8a8c32c6be5ae26e8a09b54}
+      \strng{authorfullhash}{170bb9cef54d995819ebe076c2631034}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{AIAA Scitech 2019 Forum}
+      \field{title}{Flight Control System for NASA's Mars Helicopter}
+      \field{year}{2019}
+      \verb{doi}
+      \verb 10.2514/6.2019-1289
+      \endverb
+    \endentry
+    \entry{comsol:swashplate}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=4b9864ba08004e820f2017db6fba97f6}{%
+           family={{COMSOL Multiphysics}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{4b9864ba08004e820f2017db6fba97f6}
+      \strng{fullhash}{4b9864ba08004e820f2017db6fba97f6}
+      \strng{bibnamehash}{4b9864ba08004e820f2017db6fba97f6}
+      \strng{authorbibnamehash}{4b9864ba08004e820f2017db6fba97f6}
+      \strng{authornamehash}{4b9864ba08004e820f2017db6fba97f6}
+      \strng{authorfullhash}{4b9864ba08004e820f2017db6fba97f6}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{COMSOL Application Gallery}
+      \field{note}{[Online; version 5.6; accessed 25-Nov-2025]}
+      \field{title}{Helicopter Swashplate}
+      \field{year}{2020}
+      \verb{urlraw}
+      \verb https://doc.comsol.com/5.6/doc/com.comsol.help.models.mbd.helicopter_swashplate/helicopter_swashplate.html
+      \endverb
+      \verb{url}
+      \verb https://doc.comsol.com/5.6/doc/com.comsol.help.models.mbd.helicopter_swashplate/helicopter_swashplate.html
+      \endverb
+    \endentry
+    \entry{Balaram2018}{inproceedings}{}
+      \name{author}{13}{}{%
+        {{hash=6bcf3f650eedeb22ee5f63f5c42706cc}{%
+           family={Balaram},
+           familyi={B\bibinitperiod},
+           given={Bob},
+           giveni={B\bibinitperiod}}}%
+        {{hash=c352c505f3bb6c6bdbf12e8e3c835592}{%
+           family={Canham},
+           familyi={C\bibinitperiod},
+           given={Timothy},
+           giveni={T\bibinitperiod}}}%
+        {{hash=5dc9c0a4ca4577d85bc41b6a74045ca9}{%
+           family={Clark},
+           familyi={C\bibinitperiod},
+           given={Courtney},
+           giveni={C\bibinitperiod}}}%
+        {{hash=1937ad6f32c1f9fc9ee4b633c848812e}{%
+           family={Ekblaw},
+           familyi={E\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=3ae6c2aa3dbf71e5190af11d12ba0372}{%
+           family={Grip},
+           familyi={G\bibinitperiod},
+           given={Havard\bibnamedelima F.},
+           giveni={H\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=86934701d81d61b8c885b393e12d1eb1}{%
+           family={Johnson},
+           familyi={J\bibinitperiod},
+           given={Wayne},
+           giveni={W\bibinitperiod}}}%
+        {{hash=b758a3a8e278e0d195d479c2b750a8b8}{%
+           family={Kubiak},
+           familyi={K\bibinitperiod},
+           given={Justin},
+           giveni={J\bibinitperiod}}}%
+        {{hash=407e55958acdbca0724ff179c4390406}{%
+           family={Ludwinski},
+           familyi={L\bibinitperiod},
+           given={Mimi},
+           giveni={M\bibinitperiod}}}%
+        {{hash=8ffd3678eb3b37bd578df7d7d7381004}{%
+           family={San\bibnamedelima Martin},
+           familyi={S\bibinitperiod\bibinitdelim M\bibinitperiod},
+           given={Alejandro},
+           giveni={A\bibinitperiod}}}%
+        {{hash=fb0daa9491f644f959a3322eea838274}{%
+           family={Smyth},
+           familyi={S\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod}}}%
+        {{hash=596714aec8a57e935871ad43c19b0dff}{%
+           family={Tan},
+           familyi={T\bibinitperiod},
+           given={Kelvin},
+           giveni={K\bibinitperiod}}}%
+        {{hash=dc6a51f2937305b0ebc98d29c20d8122}{%
+           family={Wendler},
+           familyi={W\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod}}}%
+        {{hash=6824cbeb891302ba8b285dcbb2dc4d73}{%
+           family={Winters},
+           familyi={W\bibinitperiod},
+           given={Allen},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{78daf0b28d62556fdbe14e5db6b594ea}
+      \strng{fullhash}{dfd8493e2a2a31955dbcbff26c2c7f36}
+      \strng{bibnamehash}{78daf0b28d62556fdbe14e5db6b594ea}
+      \strng{authorbibnamehash}{78daf0b28d62556fdbe14e5db6b594ea}
+      \strng{authornamehash}{78daf0b28d62556fdbe14e5db6b594ea}
+      \strng{authorfullhash}{dfd8493e2a2a31955dbcbff26c2c7f36}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2018 AIAA Atmospheric Flight Mechanics Conference}
+      \field{title}{Mars Helicopter Technology Demonstrator}
+      \field{year}{2018}
+      \verb{doi}
+      \verb 10.2514/6.2018-0023
+      \endverb
+    \endentry
+    \entry{Slotine1991}{book}{}
+      \name{author}{2}{}{%
+        {{hash=1dc6c2ca8255505108e7ed377ab4c534}{%
+           family={Slotine},
+           familyi={S\bibinitperiod},
+           given={Jean-Jacques\bibnamedelima E.},
+           giveni={J\bibinithyphendelim J\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=56a2cc9043bd27ea8b4615a383f2b778}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Weiping},
+           giveni={W\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Englewood Cliffs, N.J.}%
+      }
+      \list{publisher}{1}{%
+        {Prentice Hall}%
+      }
+      \strng{namehash}{14f11c338ebd4957611f048b3567a733}
+      \strng{fullhash}{14f11c338ebd4957611f048b3567a733}
+      \strng{bibnamehash}{14f11c338ebd4957611f048b3567a733}
+      \strng{authorbibnamehash}{14f11c338ebd4957611f048b3567a733}
+      \strng{authornamehash}{14f11c338ebd4957611f048b3567a733}
+      \strng{authorfullhash}{14f11c338ebd4957611f048b3567a733}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Applied Nonlinear Control}
+      \field{year}{1991}
+    \endentry
+  \enddatalist
+\endrefsection
 \endinput
 
