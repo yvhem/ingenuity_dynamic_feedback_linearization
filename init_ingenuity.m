@@ -13,7 +13,7 @@ params.A_trans = diag([0.05, 0.05, 0.1]);
 params.A_rot   = diag([0.01, 0.01, 0.05]);
 
 %% sim setup
-t_span = [0 10];
+t_span = [0 120];
 
 % initial state
 xi0 = zeros(12,1);
@@ -22,6 +22,7 @@ xi0(3) = 0.5; % start at 0.5m altitude
 % control input
 hover_thrust = params.m * params.g;  % thrust to counteract gravity
 pitch_torque = 0.005;                % small torque for forward motion [Nm]
+%pitch_torque = 0;
 
 % test: time-varying control input
 %u_control = @(t) [0; 0; 0; 0]; % test with zero input

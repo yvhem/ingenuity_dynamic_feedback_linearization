@@ -6,7 +6,7 @@ function dxi = ingenuity_dynamics(t, xi, u, p)
     V_b = xi(4:6);
     phi = xi(7); theta = xi(8); psi = xi(9);
     omega = xi(10:12);
-    % unpack inputs
+    
     % unpack inputs
     F_mag = u(1); % |F_m|
     tau_phi = u(2);
