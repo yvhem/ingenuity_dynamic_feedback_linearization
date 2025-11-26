@@ -1,0 +1,145 @@
+\chapter{Ingenuity dynamic model}\label{ch:Dynamics}
+
+In this chapter, we develop the mathematical model of the Ingenuity helicopter using Newton-Euler equations. We start by defining the reference frames and the notation used throughout the report, the state and input vectors of the system, and derive the translational and rotational equations of motion governing the vehicle's flight. The dynamic model derived here will serve as the basis for the control system design analyzed in Chapter \ref{ch:Control}.
+
+\section{Coordinate frames}
+To describe the motion of Ingenuity, we define two main right-handed coordinate frames, as illustrated in Figure \ref{fig:frames}:
+\begin{itemize}
+    \item The \textit{inertial frame} $\{I\}$, which is a fixed non-accelerating frame used as a global reference. Its origin is located at the takeoff point on the Martian surface, and its axes are denoted by $(x_i, y_i, z_i)$. We adopt a $z$-up convention, with the $z_i$ axis pointing vertically upwards in the opposite direction of gravity.
+    \item The \textit{body frame} $\{B\}$, which is a frame attached to the vehicle with its origin at the center of mass. Its axes $(x_b, y_b, z_b)$ are aligned with the principal axes of Ingenuity, with $x_b$ pointing forward, $y_b$ pointing to the right, and $z_b$ pointing up along the rotor mast.
+\end{itemize}
+
+%\begin{figure}[htbp]
+%    \centering
+%    \includegraphics[width=0.5\textwidth]{images/frames.png}
+%    \caption{Coordinate frames used to describe the motion of Ingenuity.}
+%    \label{fig:frames}
+%\end{figure}
+
+The orientation of the body frame with respect to the inertial frame is described by a rotation matrix $\bs{R} \in SO(3)$ which transforms vectors from the body frame to the inertial frame. Such a matrix is paramterized using the ZYX Euler angles convention, defined by the yaw ($\psi$), pitch ($\theta$), and roll ($\phi$) angles:
+\begin{equation}\label{eq:rotation_matrix}
+    \bs{R} = \begin{bmatrix}
+        c_\psi c_\theta & c_\psi s_\theta s_\phi - s_\psi c_\phi & c_\psi s_\theta c_\phi + s_\psi s_\phi \\
+        s_\psi c_\theta & s_\psi s_\theta s_\phi + c_\psi c_\phi & s_\psi s_\theta c_\phi - c_\psi s_\phi \\
+        -s_\theta & c_\theta s_\phi & c_\theta c_\phi
+    \end{bmatrix}
+\end{equation}
+where $c_\alpha = \cos(\alpha)$ and $s_\alpha = \sin(\alpha)$, for any angle $\alpha$.
+
+\section{State and input}
+The \textit{state} of the system captures its complete dynamic condition at any given time. The \textit{input} vector represents the control commands used to control the system.
+
+\paragraph{State vector} The state of the Ingenuity helicopter is described by a 12-dimensional vector $\bs\xi \in \mathbb{R}^{12}$, which includes its position, linear velocity, orientation, and angular velocity:
+\begin{equation}\label{eq:state}
+    \bs{\xi} = \begin{pmatrix}
+        \bs{P} \\ \bs{V}^b \\ \bs{\Theta} \\ \bs{\omega}
+    \end{pmatrix}\in\mathbb{R}^{12}
+\end{equation}
+where:
+\begin{itemize}
+    \item $\bs{P} = (x, y, z)^T \in \mathbb{R}^3$ is the position of the vehicle's center of mass in the inertial frame $\{I\}$;
+    \item $\bs{V}^b = (V^b_x, V^b_y, V^b_z)^T = (u,v,w)^T \in \mathbb{R}^3$ is the linear velocity of the center of mass expressed in the body frame $\{B\}$;
+    \item $\bs{\Theta} = (\phi, \theta, \psi)^T \in \mathbb{R}^3$ are the Euler angles representing the orientation of the body frame $\{B\}$ with respect to the inertial frame $\{I\}$;
+    \item $\bs{\omega} = (p, q, r)^T \in \mathbb{R}^3$ is the angular velocity of the vehicle expressed in the body frame $\{B\}$.
+\end{itemize}
+
+\paragraph{Input vector} Ingenuity is controlled via the net thrust produced by its two rotors and the net torques applied to the body. We define a 4-dimensional input vector $\bs{u} \in \mathbb{R}^4$ that abstracts the complex swashplate mechanism and rotor dynamics into the following components:
+\begin{equation}\label{eq:input}
+    \bs{u} = \begin{pmatrix}
+        F_T \\ \tau_\phi \\ \tau_\theta \\ \tau_\psi
+    \end{pmatrix}\in\mathbb{R}^{4}
+\end{equation}
+where:
+\begin{itemize}
+    \item $F_T$ is the magnitude of the total thrust force acting along the body $z_b$ axis;
+    \item $\tau_\phi$, $\tau_\theta$, and $\tau_\psi$ are the net control torques applied around the body axes $x_b, y_b, z_b$, respectively.
+\end{itemize}
+
+\section{Equations of motion}
+The dynamics are separated into \textit{kinematic} and \textit{dynamic} equations: kinematics describe how the position and orientation evolve based on the velocities, while dynamics describe how the velocities change based on the applied forces and torques.
+
+\subsection{Kinematics} 
+The kinematic equations describe the geometry of motion without considering the forces that cause it. 
+
+The rate of change of the inertial position is the linear velocity in the inertial frame, which is obtained by transforming the body-frame velocity using the rotation matrix in Eq. \eqref{eq:rotation_matrix}:
+\begin{equation}\label{eq:kinematics_position}
+    \dbs{P} = \bs{R} \bs{V}^b
+\end{equation}
+
+The rate of change of the Euler angles is related to the body-frame angular velocity through the following transformation:
+\begin{equation}\label{eq:kinematics_orientation}
+    \begin{pmatrix} \dot{\phi} \\ \dot{\theta} \\ \dot{\psi} \end{pmatrix} = \dbs{\Theta} = \bs{W}(\bs\Theta)\bs\omega = \begin{pmatrix}
+        1 & s_\phi t_\theta & c_\phi t_\theta \\
+        0 & c_\phi & -s_\phi \\
+        0 & s_\phi / c_\theta & c_\phi / c_\theta
+    \end{pmatrix}\begin{pmatrix}
+        p \\ q \\ r
+    \end{pmatrix}
+\end{equation}
+where $t_\alpha = \tan(\alpha)$, for any angle $\alpha$.
+
+\subsection{Translational dynamics}
+The translational dynamics are derived from \textit{Newton's second law}, which we express in the body frame $\{B\}$:
+\begin{equation}\label{eq:newton}
+    m \dbs{V}^b = \bs{F}_\text{tot}^b - m\bs\omega \times \bs{V}^b
+\end{equation}
+where $m$ is the mass of the vehicle, and the term $m(\bs\omega \times \bs{V}^b)$ is the Coriolis force that arises from differentiating the velocity in a rotating frame. The total force $\bs{F}_\text{tot}^b$ in the body frame is th sum of the thrust force, gravity, and aerodynamic drag:
+\begin{equation}\label{eq:total_force}
+    \bs{F}_\text{tot}^b = \bs{F}_\text{thrust}^b + \bs{F}_\text{gravity}^b + \bs{F}_\text{drag}^b
+\end{equation}
+In detail:
+\begin{itemize}
+    \item The \textit{thrust force} is the force generated by the two rotors acting along the positive $z_b$ axis of the body frame $\{B\}$:
+    \begin{equation}\label{eq:thrust_force}
+        \bs{F}_\text{thrust}^b = \begin{pmatrix}
+            0 \\ 0 \\ F_T
+    \end{pmatrix}\end{equation}
+    \item The \textit{gravitational force} is the weight of the vehicle acting downwards in the inertial frame $\{I\}$ rotated into the body frame $\{B\}$ using the transpose of the rotation matrix in Eq. \eqref{eq:rotation_matrix}:
+    \begin{equation}\label{eq:gravity_force}
+        \bs{F}_\text{gravity}^b = \bs{R}^T\bs{F}_\text{gravity}^i =\bs{R}^T \begin{pmatrix}
+            0 \\ 0 \\ -mg
+    \end{pmatrix}\end{equation}
+    \item The \textit{aerodynamic drag force} is modeled as a simple linear damping proportional to the body-frame velocity:
+    \begin{equation}\label{eq:drag_force}
+        \bs{F}_\text{drag}^b = -\bs{A}_\text{trans}\bs{V}^b
+    \end{equation}
+    where $\bs{A}_\text{trans}$ is a diagonal matrix containing the translational drag coefficients along each body axis (see Chapter \ref{ch:Setup}).
+\end{itemize}
+
+\subsection{Rotational dynamics}
+The rotational dynamics are derived from \textit{Euler's equation} for rigid body rotation, expressed in the body frame $\{B\}$:
+\begin{equation}\label{eq:euler}
+    \bs{I}\dbs{\omega} = \bs\tau_\text{tot}^b - \bs\omega \times \bs{I}\bs\omega
+\end{equation}
+where $\bs{I}$ is the inertia matrix, and the term $\bs\omega \times \bs{I}\bs\omega$ represents the gyroscopic torques due to the rotating frame. The total torque $\bs\tau_\text{tot}^b$ in the body frame is the sum of the control torques and aerodynamic damping torques:
+\begin{equation}\label{eq:total_torque}
+    \bs\tau_\text{tot}^b = \bs\tau_\text{control}^b + \bs\tau_\text{drag}^b
+\end{equation}
+In detail:
+\begin{itemize}
+    \item The \textit{control torques} are the torques generated by the swashplate mechanism around each body axis, and are given by the control inputs in Eq. \eqref{eq:input}:
+    \begin{equation}\label{eq:control_torque}
+        \bs\tau_\text{control}^b = \begin{pmatrix}
+            \tau_\phi \\ \tau_\theta \\ \tau_\psi
+    \end{pmatrix}\end{equation}
+    \item The \textit{aerodynamic damping torques} are modeled as linear damping opposing the angular velocity:
+    \begin{equation}\label{eq:drag_torque}
+        \bs\tau_\text{drag}^b = -\bs{A}_\text{rot}\bs\omega
+    \end{equation}
+    where $\bs{A}_\text{rot}$ is a diagonal matrix containing the rotational drag coefficients around each body axis (see Chapter \ref{ch:Setup}).
+\end{itemize}
+
+\section{Complete state-space model}
+Combining the kinematic and dynamic equations, we obtain the complete \textit{nonlinear} state-space model of the Ingenuity helicopter in the form $\dbs{\xi} = \bs{f}(\bs{\xi}, \bs{u})$:
+\begin{equation}\label{eq:state_space}
+    \dbs{\xi} = \begin{pmatrix}
+        \dbs{P} \\ \dbs{V}^b \\ \dbs{\Theta} \\ \dbs{\omega}
+    \end{pmatrix} = \begin{pmatrix}
+        \bs{R}\bs{V}^b \\
+        \frac{1}{m}\left(\bs{F}_\text{thrust}^b + \bs{F}_\text{gravity}^b + \bs{F}_\text{drag}^b\right) - \bs\omega \times \bs{V}^b \\
+        \bs{W}(\bs\Theta)\bs\omega \\
+        \bs{I}^{-1}\left(\bs\tau_\text{control}^b + \bs\tau_\text{drag}^b - \bs\omega \times \bs{I}\bs\omega\right)
+    \end{pmatrix}
+\end{equation}
+
+We will be using this set of 12 coupled nonlinear differential equations as the basis for our analysis of dynamic feedback linearization in Chapter \ref{ch:Control}.
