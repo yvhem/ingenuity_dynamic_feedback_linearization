@@ -15,18 +15,21 @@
 \contentsline {subsection}{\numberline {2.3.3}Rotational dynamics}{7}{subsection.2.3.3}%
 \contentsline {section}{\numberline {2.4}Complete state-space model}{8}{section.2.4}%
 \contentsline {chapter}{\numberline {3}Control design}{9}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Objective}{9}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Relative degree calculation}{9}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Dynamic compensator design}{9}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Linearizing control law}{9}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Linear tracking controller}{9}{section.3.5}%
-\contentsline {chapter}{\numberline {4}Simulation setup}{10}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Model parameters}{10}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Simulation scenarios}{10}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Performance metrics}{10}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Results}{11}{chapter.5}%
-\contentsline {section}{\numberline {5.1}TODO: task}{11}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Analysis}{11}{section.5.2}%
-\contentsline {chapter}{\numberline {6}Conclusion}{12}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Summary}{12}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Future work}{12}{section.6.2}%
+\contentsline {section}{\numberline {3.1}Dynamic feedback linearization}{9}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Ingenuity DFL}{10}{subsection.3.1.1}%
+\contentsline {subsubsection}{Yaw channel}{10}{section*.7}%
+\contentsline {subsubsection}{Position channel}{10}{section*.8}%
+\contentsline {subsubsection}{Dynamic compensator}{11}{section*.9}%
+\contentsline {subsubsection}{Linearizing control law}{11}{section*.10}%
+\contentsline {subsubsection}{Outer-loop tracking controller}{12}{section*.11}%
+\contentsline {section}{\numberline {3.2}Control architecture summary}{12}{section.3.2}%
+\contentsline {chapter}{\numberline {4}Simulation setup}{13}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Model parameters}{13}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Simulation scenarios}{13}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Performance metrics}{13}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Results}{14}{chapter.5}%
+\contentsline {section}{\numberline {5.1}TODO: task}{14}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Analysis}{14}{section.5.2}%
+\contentsline {chapter}{\numberline {6}Conclusion}{15}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Summary}{15}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Future work}{15}{section.6.2}%

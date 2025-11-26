@@ -1,16 +1,142 @@
 \chapter{Control design}\label{ch:Control}
 
-\section{Objective}
-% Design a controller for the Ingenuity helicopter to achieve stable flight and maneuverability under Martian conditions. Choose outputs for feedback linearization.
+This chapter details the design of a nonlinear controller for the Ingenuity helicopter model developed in Chapter \ref{ch:Dynamics}. Due to the underactuatued and coupled nature of its dynamics, standard linear control techniques are not suitable for achieving trajectory tracking. We therefore employ the technique of \textit{dynamic feedback linearization} (DFL) to cancel the system's inherent nonlinearities and achieve a linear input-output mapping.
 
-\section{Relative degree calculation}
-% Formal proof of differentiation orders
+The objective is to design a control law for the input vector $\bs{u}$ defined in Eq. \eqref{eq:input} that forces the position $\bs{P}(t)$ and yaw angle $\psi(t)$ of Ingenuity to track a desired smooth trajectory $(\bs{P}_d(t), \psi_d(t))$. To achieve this, we will first analyze the system's input-output relationship to determine the \textit{relative degree} of each output with respect to the inputs. Then, we will design a \textit{dynamic compensator} with an internal state $\bs{\zeta}$ to augment the system and achieve full relative degree, so as to get a feedback linearizing control law. Finally, we will design an \textit{outer-loop} linear tracking controller to stabilize the tracking error for the linearized system.
 
-\section{Dynamic compensator design}
-% Explain why it is needed and define its state
+\section{Dynamic feedback linearization}
+For a general nonlinear system of the form $\dbs{\xi} = \bs{f}(\bs\xi) + \bs{G}(\bs\xi)\bs{u}$ with output $\bs{y} = \bs{h}(\bs\xi)$, the goal of feedback linearization is to find a \textit{coordinate transformation} and a control law that renders the input-output map linear. This is achieved by differentiating each output $y_i$ until at least one input $u_j$ appears. The number of differentiation required is called the \textit{relative degree} $r_i$ of the output $y_i$.
 
-\section{Linearizing control law}
-% Derive the expressions for l(xi, zeta) and J(xi, zeta) and the final control law u_tilde = J^(-1)(-l+v)
+If the total relative degree $r = \sum r_i$ is less than the dimension of the state $n$, the system has residual internal dynamics (\textit{zero dynamics}) that may be unstable. On the other hand, if $r=n$ the system can be fully linearized.
 
-\section{Linear tracking controller}
-% Define error dynamics and design the outer-loop controller
+When the control inputs do not appear in a way that allows for direct cancellation of nonlinearities, that is when the \textit{decoupling matrix} is singular, we introduce a \textit{dynamic compensator} with its own internal state $\bs\zeta$ and dynamics $\dbs{\zeta}$. This involves augmenting the system with integrators on the input channels, which leads to an increased dimension of the state space to match the total relative degree.
+
+\subsection{Ingenuity DFL}
+We apply the DFL framework to the dynamics of Ingenuity. The outputs we want to control are the position $\bs{P} = (x,y,z)^T$ and yaw angle $\psi$, so we define the output vector as:
+\begin{equation}\label{eq:output}
+    \bs{y} = \begin{pmatrix}
+        x \\ y \\ z \\ \psi
+    \end{pmatrix}
+\end{equation}
+We can now differentiate each component of the output vector $\bs{y}$ until a component of the input vector $\bs{u}$ appears, and determine the corresponding relative degree.
+
+\subsubsection{Yaw channel}
+The yaw dynamics are governed by the rotational kinematics and the rotational dynamics. Differentiating the yaw angle $\psi$ once gives:
+\[ \dot{y}_4 = \dot{\psi} = \frac{\sin\phi}{\cos\theta}q + \frac{\cos\phi}{\cos\theta}r \]
+This expression depends only on the states $\phi, \theta, q, r$ and no inputs appear, so we differentiate again:
+\begin{align*}
+    \ddot{\psi} = \underbrace{(s_\phi\sec\theta)\dot{q} + (c_\phi\sec\theta)\dot{r}}_{\text{input-dependent}} + \underbrace{(\dot\phi c_\phi\sec\theta + s_\phi\dot\theta\sec\theta\tan\theta)q + (-\dot\phi s_\phi\sec\theta + c_\phi\dot\theta\sec\theta\tan\theta)r}_{\text{state-dependent =} \bs{f}_\psi(\bs\xi)}
+\end{align*}
+where $\bs{f}(\bs{\xi})$ is the \textit{drift} term, and the input-dependent part can be expressed as:
+\[ \begin{pmatrix}
+    0 & s_\phi\sec\theta & c_\phi\sec\theta
+\end{pmatrix}\dbs{\omega} \]
+where $\dbs{\omega}$ is given by the rotational dynamics in Eq. \eqref{eq:euler}. Substituting this expression, we obtain:
+\begin{equation}\label{eq:ddot_psi}
+    \ddot{\psi} = \bs{f}_\psi(\bs\xi) + \begin{pmatrix}
+        0 & s_\phi\sec\theta & c_\phi\sec\theta
+    \end{pmatrix}\bs{I}^{-1}\left(\bs\tau_\text{control}^b + \bs\tau_\text{drag}^b - \bs\omega \times \bs{I}\bs\omega\right)
+\end{equation}
+We see that the control torques $\bs\tau_\text{control}^b$ appear linearly (in particular, the two inputs $u_3=\tau_\theta$ and $u_4=\tau_\psi$), so the relative degree of the yaw channel is $r_\psi = 2$.
+
+\subsubsection{Position channel}
+The position dynamics reveal that the system is \textit{underactuated}. From the translational kinematics in Eq. \refeq{eq:kinematics_position}, we have:
+\[ \dbs{P} = \bs{R}(\bs\Theta)\bs{V}^b \]
+which is independent of the inputs. We therefore differentiate twice:
+\begin{align*} 
+    \ddbs{P} &= \dbs{R}\bs{V}^b + \bs{R}\dbs{V}^b \\
+    &= \cancel{\bs{RS}(\bs\omega)\bs{V}^b} + \bs{R}\left[\frac{1}{m}\left(\bs{F}_\text{thrust}^b + \bs{F}_\text{gravity}^b + \bs{F}_\text{drag}^b \right) - \cancel{\bs\omega \times \bs{V}^b} \right] \\
+    &= \frac{1}{m}\bs{R}\begin{pmatrix}
+        0 \\ 0 \\ \circledmath{F_T}
+    \end{pmatrix} + \begin{pmatrix}
+        0 \\ 0 \\ -g
+    \end{pmatrix} - \frac{1}{m}A_\text{trans}V^b
+\end{align*}
+The input $F_T$ appears, but the control inputs $\tau_\phi, \tau_\theta$ do not. We must continue differentiating:
+\[ P^{(3)} = \frac{d}{dt}\left[ \frac{F_T}{m}\bs{R}\bs{e}_3 -g\bs{e}_3 + \frac{1}{m}\bs{R}\bs{F}_\text{drag}^b \right] \]
+The time derivatve of the second term is zero. The third term depends on $\bs{V}^b$ and $\bs\omega$, but not on its derivative $\dbs\omega$, and thus will not introduce any new input. As for the first term, we have:
+\[ \frac{d}{dt} \left[\frac{F_T}{m}\bs{R}\bs{e}_3\right] = \frac{\circledmath{\dot{F}_T}}{m}\bs{R}\bs{e}_3 + \frac{F_T}{m}\dbs{R}\bs{e}_3 \]
+The term $\dot{F}_T$ appears, which is not a control input. We therefore differentiate one last time:
+\[ P^{(4)} = \frac{d}{dt}\left[ \frac{\dot{F}_T}{m}\bs{R}\bs{e}_3 + \frac{F_T}{m}\bs{RS}(\bs\omega)\bs{e}_3 + \dots \right] \]
+The first term gives:
+\[ \frac{d}{dt} \left[ \frac{\dot{F}_T}{m}\bs{R}\bs{e}_3 \right] = \frac{\circledmath{\ddot{F}_T}}{m}\bs{R}\bs{e}_3 + \frac{\dot{F}_T}{m}\dbs{R}\bs{e}_3 \]
+Again, we have a non-input term $\ddot{F}_T$. The second term gives:
+\[ \frac{d}{dt}\left[ \frac{F_T}{m}\bs{RS}(\bs\omega)\bs{e}_3 \right] = \dots + \frac{F_T}{m}\bs{RS}(\circledmath{\dbs{\omega}})\bs{e}_3 \]
+where $\dbs{\omega}$ appears, which is a direct linear function of the input torques $\bs\tau_\text{control}^b$. Therefore, the relative degree of each position channel is $r_x = r_y = r_z = 4$.
+
+\subsubsection{Dynamic compensator}
+The appearance of $\ddot{F}_T$ in $\bs{P}^{(4)}$ indicates that the thrust input $F_T$ does not directly influence the outputs in a way that allows for cancellation of nonlinearities. We need to introduce a dynamic compensator for the thrust channel, augmenting the state of the system with two additional controller states:
+\begin{equation}\label{eq:compensator_state}
+    \bs\zeta = \begin{pmatrix}
+        \zeta_1 \\ \zeta_2
+    \end{pmatrix} = \begin{pmatrix}
+        F_T \\ \dot{F}_T
+    \end{pmatrix}
+\end{equation}
+The dynamics of the compensator are given by a simple integrator chain driven by a new \textit{virtual input} $v_T$:
+\begin{equation}\label{eq:compensator_dynamics}
+    \dbs{\zeta} = \begin{pmatrix}
+        \dot{\zeta}_1 \\ \dot{\zeta}_2
+    \end{pmatrix} = \begin{pmatrix}
+        \zeta_2 \\ v_T
+    \end{pmatrix} = \begin{pmatrix}
+        \dot{F}_T \\ \ddot{F}_T
+    \end{pmatrix} 
+\end{equation}
+The thrust $F_T$ applied to Ingenuity is now treated as a state variable $\zeta_1$ that evolves according to the compensator dynamics. The extended state of the system is $(\bs\xi, \bs\zeta)\in\mathbb{R}^{14}$.
+
+\subsubsection{Linearizing control law}
+The total relative degree of the augmented system is now:
+\[ r = r_x + r_y + r_z + r_\psi = 4 + 4 + 4 + 2 = 14 \]
+which equals the dimension of the extended state space ($n_\text{ext} = 12 + 2 = 14$). Therefore, the system is fully state linearizable with no zero dynamics.
+
+We define the extended input vector as:
+\begin{equation}\label{eq:extended_input}
+    \tilde{\bs{u}} = \begin{pmatrix}
+        \ddot{F}_T \\ \tau_\phi \\ \tau_\theta \\ \tau_\psi
+    \end{pmatrix}
+\end{equation}
+We can write the system in the form:
+\begin{equation}
+    \begin{pmatrix}
+        P^{(4)} \\ \ddot{\psi}
+    \end{pmatrix} = \bs{l}(\bs\xi, \bs\zeta) + \bs{J}(\bs\xi, \bs\zeta)\tilde{\bs{u}}
+\end{equation}
+where $\bs{l}(\bs\xi, \bs\zeta)$ is the drift vector containing all state-dependent terms, and $\bs{J}(\bs\xi,\bs\zeta)$ is the $4 \times 4$ decoupling matrix. The linearizing control law is chosen to cancel these terms:
+\begin{equation}\label{eq:dfl_law}
+    \tilde{\bs{u}} = \bs{J}^{-1}(\bs\xi, \bs\zeta) \left( \bs{v} - \bs{l}(\bs\xi, \bs\zeta) \right)
+\end{equation}
+where $\bs{v} = (v_1, v_2, v_3, v_4)^T$ is the new simplified input vector. Applying this control law transforms the input-output dynamics into a set of decoupled linear integrator chains:
+\begin{equation}\label{eq:linearized_dynamics}
+    \begin{cases}
+        x^{(4)} = v_1 \\
+        y^{(4)} = v_2 \\
+        z^{(4)} = v_3 \\
+        \ddot{\psi} = v_4
+    \end{cases}
+\end{equation}
+
+\subsubsection{Outer-loop tracking controller}
+The final step is to design the input $\bs{v}$ to ensure the tracking errors converge to zero. Let the position error be $\bs{e}_P = \bs{P}_d - \bs{P}$ and the yaw error be $e_\psi = \psi_d - \psi$. For the fourth-order position dynamics, we design a controller with feedforward and state feedback on the error dynamics:
+\begin{equation}\label{eq:position_controller}
+    v_{1,2,3} = \bs{P}_d^{(4)} + K_3 \bs{e}_P^{(3)} + K_2 \ddbs{e}_P + k_1 \dbs{e}_P + K_0 \bs{e}_P
+\end{equation}
+where $v_{1,2,3} = (v_1, v_2, v_3)^T$ and $K_i = \text{diag}(k_{i,x}, k_{i,y}, k_{i,z})$ are diagonal gain matrices.
+
+For the second-order yaw dynamics, we use a PD controller with feedforward:
+\begin{equation}\label{eq:yaw_controller}
+    v_4 = \ddot{\psi}_d + k_{d, \psi}\dot{e}_\psi + k_{p, \psi}e_\psi
+\end{equation}
+
+The gains in Eqs. \eqref{eq:position_controller} and \eqref{eq:yaw_controller} are chosen to place the poles of the respective error characteristic equations in the left-half of the complex plane, ensuring exponential convergence of the tracking errors to zero.
+
+\section{Control architecture summary}
+The complete control architecture is summarized in Figure \ref{fig:control_diagram}. The outer loop computes the virtual input $\bs{v}$ based on the tracking error. The inner loop computes the state-dependent terms $\bs{l}$ and $\bs{J}$ and uses the DFL law \eqref{eq:dfl_law} to calculate the extended inputs $\tilde{\bs{u}}$. The torque commands are sent to the helicopter, while the thrust rate command $v_T$ is integrated through the dynamic compensator to produce the thrust input $F_T$.
+
+*TODO: add block scheme*
+%\begin{figure}[htbp]
+%\centering
+%\includegraphics[width=0.9\textwidth]{images/dfl_diagram_placeholder.png}
+%\caption{Block diagram of the complete DFL control system.}
+%\label{fig:control_diagram}
+%\end{figure}
