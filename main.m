@@ -9,11 +9,9 @@ params.A_trans = diag([0.05, 0.05, 0.1]); % Drag coefficients
 params.A_rot   = diag([0.01, 0.01, 0.05]);
 
 %% Controller gains
-lambda_p = 3; 
 params.kp = [27, 36, 18, 4]; % [k0, k1, k2, k3]
 
-lambda_psi = 2;
-params.kpsi = [lambda_psi^2, 2*lambda_psi]; % [k0, k1]
+params.kpsi = [4, 4]; % [k0, k1]
 
 
 %% Simulation setup
