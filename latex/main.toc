@@ -21,15 +21,18 @@
 \contentsline {subsubsection}{Position channel}{10}{section*.8}%
 \contentsline {subsubsection}{Dynamic compensator}{11}{section*.9}%
 \contentsline {subsubsection}{Linearizing control law}{11}{section*.10}%
-\contentsline {subsubsection}{Outer-loop tracking controller}{12}{section*.11}%
-\contentsline {section}{\numberline {3.2}Control architecture summary}{12}{section.3.2}%
-\contentsline {chapter}{\numberline {4}Simulation setup}{13}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Model parameters}{13}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Simulation scenarios}{13}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Performance metrics}{13}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Results}{14}{chapter.5}%
-\contentsline {section}{\numberline {5.1}TODO: task}{14}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Analysis}{14}{section.5.2}%
-\contentsline {chapter}{\numberline {6}Conclusion}{15}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Summary}{15}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Future work}{15}{section.6.2}%
+\contentsline {paragraph}{Decoupling matrix $\boldsymbol {J}$}{12}{section*.11}%
+\contentsline {paragraph}{Drift vector $\boldsymbol {l}$}{12}{section*.12}%
+\contentsline {paragraph}{Control law}{13}{section*.13}%
+\contentsline {subsubsection}{Outer-loop tracking controller}{13}{section*.14}%
+\contentsline {section}{\numberline {3.2}Control architecture summary}{13}{section.3.2}%
+\contentsline {chapter}{\numberline {4}Simulation setup}{14}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Model parameters}{14}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Simulation scenarios}{14}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Performance metrics}{14}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Results}{15}{chapter.5}%
+\contentsline {section}{\numberline {5.1}TODO: task}{15}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Analysis}{15}{section.5.2}%
+\contentsline {chapter}{\numberline {6}Conclusion}{16}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Summary}{16}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Future work}{16}{section.6.2}%

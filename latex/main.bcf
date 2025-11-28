@@ -2348,19 +2348,15 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">ref.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">wiki:ingenuity</bcf:citekey>
-    <bcf:citekey order="2">wiki:ingenuity</bcf:citekey>
+    <bcf:citekey order="1">Grip2019</bcf:citekey>
+    <bcf:citekey order="2">Balaram2018</bcf:citekey>
     <bcf:citekey order="3">Grip2019</bcf:citekey>
-    <bcf:citekey order="4">comsol:swashplate</bcf:citekey>
-    <bcf:citekey order="5">comsol:swashplate</bcf:citekey>
-    <bcf:citekey order="6">Balaram2018</bcf:citekey>
-    <bcf:citekey order="7">Grip2019</bcf:citekey>
-    <bcf:citekey order="8">Slotine1991</bcf:citekey>
-    <bcf:citekey order="9">wiki:ingenuity</bcf:citekey>
-    <bcf:citekey order="10">Grip2019</bcf:citekey>
-    <bcf:citekey order="11">comsol:swashplate</bcf:citekey>
-    <bcf:citekey order="12">Balaram2018</bcf:citekey>
-    <bcf:citekey order="13">Slotine1991</bcf:citekey>
+    <bcf:citekey order="4">vendittelli:quad_dfl</bcf:citekey>
+    <bcf:citekey order="5">vendittelli:ingenuity_model</bcf:citekey>
+    <bcf:citekey order="6">Grip2019</bcf:citekey>
+    <bcf:citekey order="7">Balaram2018</bcf:citekey>
+    <bcf:citekey order="8">vendittelli:quad_dfl</bcf:citekey>
+    <bcf:citekey order="9">vendittelli:ingenuity_model</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

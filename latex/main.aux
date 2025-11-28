@@ -17,36 +17,30 @@
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
 \abx@aux@refcontext{none/global//global/global}
-\abx@aux@cite{0}{wiki:ingenuity}
-\abx@aux@segm{0}{0}{wiki:ingenuity}
-\abx@aux@cite{0}{wiki:ingenuity}
-\abx@aux@segm{0}{0}{wiki:ingenuity}
 \abx@aux@cite{0}{Grip2019}
 \abx@aux@segm{0}{0}{Grip2019}
-\abx@aux@cite{0}{comsol:swashplate}
-\abx@aux@segm{0}{0}{comsol:swashplate}
-\abx@aux@cite{0}{comsol:swashplate}
-\abx@aux@segm{0}{0}{comsol:swashplate}
 \@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \newlabel{ch:Intro}{{1}{2}{Introduction}{chapter.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces Ingenuity at Wright Brothers Field on 6 April 2021, its third day of deployment on Mars. Image source: \blx@tocontentsinit {0}\cite {wiki:ingenuity}.\relax }}{2}{figure.caption.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces Ingenuity at Wright Brothers Field on 6 April 2021, its third day of deployment on Mars. Image source: Wikipedia.\relax }}{2}{figure.caption.2}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:ingenuity}{{1.1}{2}{Ingenuity at Wright Brothers Field on 6 April 2021, its third day of deployment on Mars. Image source: \cite {wiki:ingenuity}.\relax }{figure.caption.2}{}}
+\newlabel{fig:ingenuity}{{1.1}{2}{Ingenuity at Wright Brothers Field on 6 April 2021, its third day of deployment on Mars. Image source: Wikipedia.\relax }{figure.caption.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.1}The Ingenuity helicopter}{2}{section.1.1}\protected@file@percent }
 \abx@aux@cite{0}{Balaram2018}
 \abx@aux@segm{0}{0}{Balaram2018}
 \abx@aux@cite{0}{Grip2019}
 \abx@aux@segm{0}{0}{Grip2019}
-\abx@aux@cite{0}{Slotine1991}
-\abx@aux@segm{0}{0}{Slotine1991}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces A helicopter swashplate mechanism. It translates non-rotating control inputs from the servos into the rotating frame of the rotor blades, controlling both collective and cyclic pitch. Image source: \blx@tocontentsinit {0}\cite {comsol:swashplate}.\relax }}{3}{figure.caption.3}\protected@file@percent }
-\newlabel{fig:swashplate}{{1.2}{3}{A helicopter swashplate mechanism. It translates non-rotating control inputs from the servos into the rotating frame of the rotor blades, controlling both collective and cyclic pitch. Image source: \cite {comsol:swashplate}.\relax }{figure.caption.3}{}}
+\abx@aux@cite{0}{vendittelli:quad_dfl}
+\abx@aux@segm{0}{0}{vendittelli:quad_dfl}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces A helicopter swashplate mechanism. It translates non-rotating control inputs from the servos into the rotating frame of the rotor blades, controlling both collective and cyclic pitch. Image source: COMSOL Application Gallery.\relax }}{3}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:swashplate}{{1.2}{3}{A helicopter swashplate mechanism. It translates non-rotating control inputs from the servos into the rotating frame of the rotor blades, controlling both collective and cyclic pitch. Image source: COMSOL Application Gallery.\relax }{figure.caption.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1.1}Control}{3}{subsection.1.1.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{Dynamic feedback linearization}{3}{section*.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {1.2}Objective}{4}{section.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {1.3}Structure}{4}{section.1.3}\protected@file@percent }
+\abx@aux@cite{0}{vendittelli:ingenuity_model}
+\abx@aux@segm{0}{0}{vendittelli:ingenuity_model}
 \@writefile{toc}{\contentsline {chapter}{\numberline {2}Ingenuity dynamic model}{5}{chapter.2}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -90,35 +84,37 @@
 \newlabel{eq:compensator_dynamics}{{3.4}{11}{Dynamic compensator}{equation.3.1.4}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Linearizing control law}{11}{section*.10}\protected@file@percent }
 \newlabel{eq:extended_input}{{3.5}{12}{Linearizing control law}{equation.3.1.5}{}}
-\newlabel{eq:dfl_law}{{3.7}{12}{Linearizing control law}{equation.3.1.7}{}}
-\newlabel{eq:linearized_dynamics}{{3.8}{12}{Linearizing control law}{equation.3.1.8}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Outer-loop tracking controller}{12}{section*.11}\protected@file@percent }
-\newlabel{eq:position_controller}{{3.9}{12}{Outer-loop tracking controller}{equation.3.1.9}{}}
-\newlabel{eq:yaw_controller}{{3.10}{12}{Outer-loop tracking controller}{equation.3.1.10}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Control architecture summary}{12}{section.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Simulation setup}{13}{chapter.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Decoupling matrix $\boldsymbol  {J}$}{12}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Drift vector $\boldsymbol  {l}$}{12}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Control law}{13}{section*.13}\protected@file@percent }
+\newlabel{eq:dfl_law}{{3.10}{13}{Control law}{equation.3.1.10}{}}
+\newlabel{eq:linearized_dynamics}{{3.11}{13}{Control law}{equation.3.1.11}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Outer-loop tracking controller}{13}{section*.14}\protected@file@percent }
+\newlabel{eq:position_controller}{{3.12}{13}{Outer-loop tracking controller}{equation.3.1.12}{}}
+\newlabel{eq:yaw_controller}{{3.13}{13}{Outer-loop tracking controller}{equation.3.1.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Control architecture summary}{13}{section.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Simulation setup}{14}{chapter.4}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ch:Setup}{{4}{13}{Simulation setup}{chapter.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Model parameters}{13}{section.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Simulation scenarios}{13}{section.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Performance metrics}{13}{section.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Results}{14}{chapter.5}\protected@file@percent }
+\newlabel{ch:Setup}{{4}{14}{Simulation setup}{chapter.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Model parameters}{14}{section.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Simulation scenarios}{14}{section.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Performance metrics}{14}{section.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Results}{15}{chapter.5}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ch:Results}{{5}{14}{Results}{chapter.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}TODO: task}{14}{section.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Analysis}{14}{section.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Conclusion}{15}{chapter.6}\protected@file@percent }
+\newlabel{ch:Results}{{5}{15}{Results}{chapter.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}TODO: task}{15}{section.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Analysis}{15}{section.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Conclusion}{16}{chapter.6}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ch:Conclusion}{{6}{15}{Conclusion}{chapter.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}Summary}{15}{section.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}Future work}{15}{section.6.2}\protected@file@percent }
-\abx@aux@read@bbl@mdfivesum{05318940052DCE2AB0F7FA0F66C82CE2}
-\abx@aux@defaultrefcontext{0}{wiki:ingenuity}{none/global//global/global}
+\newlabel{ch:Conclusion}{{6}{16}{Conclusion}{chapter.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Summary}{16}{section.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Future work}{16}{section.6.2}\protected@file@percent }
+\abx@aux@read@bbl@mdfivesum{BAD118286C33CF11DCD0DFD1CAE696BA}
 \abx@aux@defaultrefcontext{0}{Grip2019}{none/global//global/global}
-\abx@aux@defaultrefcontext{0}{comsol:swashplate}{none/global//global/global}
 \abx@aux@defaultrefcontext{0}{Balaram2018}{none/global//global/global}
-\abx@aux@defaultrefcontext{0}{Slotine1991}{none/global//global/global}
-\gdef \@abspage@last{17}
+\abx@aux@defaultrefcontext{0}{vendittelli:quad_dfl}{none/global//global/global}
+\abx@aux@defaultrefcontext{0}{vendittelli:ingenuity_model}{none/global//global/global}
+\gdef \@abspage@last{18}

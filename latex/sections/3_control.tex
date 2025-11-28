@@ -50,7 +50,7 @@ which is independent of the inputs. We therefore differentiate twice:
         0 \\ 0 \\ \circledmath{F_T}
     \end{pmatrix} + \begin{pmatrix}
         0 \\ 0 \\ -g
-    \end{pmatrix} - \frac{1}{m}A_\text{trans}V^b
+    \end{pmatrix} - \frac{1}{m}\bs{R}\bs{A}_\text{trans}\bs{V}^b
 \end{align*}
 The input $F_T$ appears, but the control inputs $\tau_\phi, \tau_\theta$ do not. We must continue differentiating:
 \[ P^{(3)} = \frac{d}{dt}\left[ \frac{F_T}{m}\bs{R}\bs{e}_3 -g\bs{e}_3 + \frac{1}{m}\bs{R}\bs{F}_\text{drag}^b \right] \]
@@ -96,15 +96,46 @@ We define the extended input vector as:
         \ddot{F}_T \\ \tau_\phi \\ \tau_\theta \\ \tau_\psi
     \end{pmatrix}
 \end{equation}
-We can write the system in the form:
+
+The dynamics of the output can now be expressed in the standard affine form:
 \begin{equation}
     \begin{pmatrix}
         P^{(4)} \\ \ddot{\psi}
     \end{pmatrix} = \bs{l}(\bs\xi, \bs\zeta) + \bs{J}(\bs\xi, \bs\zeta)\tilde{\bs{u}}
 \end{equation}
-where $\bs{l}(\bs\xi, \bs\zeta)$ is the drift vector containing all state-dependent terms, and $\bs{J}(\bs\xi,\bs\zeta)$ is the $4 \times 4$ decoupling matrix. The linearizing control law is chosen to cancel these terms:
+where $\bs{l}(\bs\xi, \bs\zeta)$ is the drift vector containing all state-dependent terms, and $\bs{J}(\bs\xi,\bs\zeta)$ is the $4 \times 4$ decoupling matrix. 
+
+\paragraph{Decoupling matrix $\bs{J}$} The decoupling matrix $\bs{J}$ contains the coefficients of the extended inputs $\tilde{\bs{u}}$ in the output derivative equations. By carrying out the differentiations in the previous section, we can identify its components:
+\begin{equation}
+    \bs{J}(\bs{\xi}, \bs{\zeta}) = \begin{bmatrix}\begin{array}{c|c}
+        \frac{1}{m}\bs{R}\bs{e}_3 & -\frac{F_T}{m}\bs{R}\bs{S}(\bs{e}_3)\bs{I}^{-1} \\[3pt]
+        \cline{1-2} \\[-12pt]
+        \bs{0}_{1\times 1} & \begin{pmatrix}
+        0 & s_\phi\sec\theta & c_\phi\sec\theta
+    \end{pmatrix}\bs{I}^{-1}
+    \end{array}\end{bmatrix}
+\end{equation}
+The block $\bs{J}_{11}$ is a $3 \times 1$ vector representing the effect of $\ddot{F}_T$ on $\bs{P}^{(4)}$. The block $\bs{J}_{12}$ is a $3 \times 3$ matrix representing the effect of the control torques on $\bs{P}^{(4)}$. The block $\bs{J}_{21}$ is zero, since the yaw acceleration is independent of the thrust dynamics $\ddot{F}_T$. The block $\bs{J}_{22}$ is a $1 \times 3$ vector representing the effect of the control torques on $\ddot{\psi}$.
+
+This decoupling matrix is dependent on $F_T$ and becomes singular if $F_T=0$. In this condition, the torques have no effect on the position, and the system is uncontrollable. In practice, we implement a check to disable the controller if the thrust magnitude approaches zero.
+
+\paragraph{Drift vector $\bs{l}$} The drift vector $\bs{l}$ contains all the state-dependent terms from the differentiation that do not multiply the extended inputs. It can be partitioned as:
+\[ \bs{l} = \begin{pmatrix}
+    \bs{l}_{pos} \\ l_\psi
+\end{pmatrix} \]
+The yaw drift $l_\psi$ is derived from Eq. \eqref{eq:ddot_psi}:
+\begin{equation}
+    l_\psi(\bs\xi) = (\dot\phi c_\phi \sec\theta + s_\phi\dot\theta\sec\theta \tan\theta)q + (-\dot\phi s_\phi\sec\theta + c_\phi\dot\theta\sec\theta\tan\theta)r
+\end{equation}
+The position drift $\bs{l}_\text{pos}$ contains all terms from the fourth derivative of position that are not part of the decoupling matrix. Its full expression is complex, so we highlight only its main components:
+\begin{equation}
+    \bs{l}_{pos} = \frac{2\dot{F}_T}{m}\bs{R}\bs{S}(\bs\omega)\bs{e}_3 + \frac{F_T}{m}\bs{R}\bs{S}^2(\bs\omega)\bs{e}_3 + \frac{F_T}{m}\bs{R}\bs{S}(\dbs{\omega}_\text{drift})\bs{e}_3 + \dots
+\end{equation}
+where $\dbs{\omega}_\text{drift} = \bs{I}^{-1}(\bs\tau_\text{drag}^b - \bs\omega \times \bs{I}\bs\omega)$ is the part of the angular acceleration not caused by control inputs. The ellipsis represents higher-order drag terms which are often simplified in implementation.
+
+\paragraph{Control law} The linearizing control law is chosen to cancel these complex terms:
 \begin{equation}\label{eq:dfl_law}
-    \tilde{\bs{u}} = \bs{J}^{-1}(\bs\xi, \bs\zeta) \left( \bs{v} - \bs{l}(\bs\xi, \bs\zeta) \right)
+    \tilde{\bs{u}} = \bs{J}^{-1}(\bs\xi, \bs\zeta) \left[ \bs{v} - \bs{l}(\bs\xi, \bs\zeta) \right]
 \end{equation}
 where $\bs{v} = (v_1, v_2, v_3, v_4)^T$ is the new simplified input vector. Applying this control law transforms the input-output dynamics into a set of decoupled linear integrator chains:
 \begin{equation}\label{eq:linearized_dynamics}
@@ -119,9 +150,9 @@ where $\bs{v} = (v_1, v_2, v_3, v_4)^T$ is the new simplified input vector. Appl
 \subsubsection{Outer-loop tracking controller}
 The final step is to design the input $\bs{v}$ to ensure the tracking errors converge to zero. Let the position error be $\bs{e}_P = \bs{P}_d - \bs{P}$ and the yaw error be $e_\psi = \psi_d - \psi$. For the fourth-order position dynamics, we design a controller with feedforward and state feedback on the error dynamics:
 \begin{equation}\label{eq:position_controller}
-    v_{1,2,3} = \bs{P}_d^{(4)} + K_3 \bs{e}_P^{(3)} + K_2 \ddbs{e}_P + k_1 \dbs{e}_P + K_0 \bs{e}_P
+    v_{1,2,3} = \bs{P}_d^{(4)} + \bs{K}_3 \bs{e}_P^{(3)} + \bs{K}_2 \ddbs{e}_P + \bs{K}_1 \dbs{e}_P + \bs{K}_0 \bs{e}_P
 \end{equation}
-where $v_{1,2,3} = (v_1, v_2, v_3)^T$ and $K_i = \text{diag}(k_{i,x}, k_{i,y}, k_{i,z})$ are diagonal gain matrices.
+where $v_{1,2,3} = (v_1, v_2, v_3)^T$ and $\bs{K}_i = \text{diag}(k_{i,x}, k_{i,y}, k_{i,z})$ are diagonal gain matrices.
 
 For the second-order yaw dynamics, we use a PD controller with feedforward:
 \begin{equation}\label{eq:yaw_controller}
