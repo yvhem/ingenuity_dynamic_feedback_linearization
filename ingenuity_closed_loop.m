@@ -149,9 +149,26 @@ function dxi_ext = ingenuity_closed_loop(t, xi_ext, p, trajectory_type)
 
     %% Plant dynamics integration
     
+    % Wind disturbance
+    if isfield(p, 'gust_force_inertial')
+        F_wind_i = p.gust_force_inertial;
+        t_start = p.gust_start_time;
+        t_end   = p.gust_end_time;
+    else
+        F_wind_i = [0;0;0];
+        t_start = 9999; t_end = 9999;
+    end
+
+    % Apply gust only within the specific time window
+    if t >= t_start && t <= t_end
+        F_gust_b = R' * F_wind_i; % Rotate inertial wind to body frame
+    else
+        F_gust_b = [0; 0; 0];
+    end
+
     % Re-calculate dynamics with saturated inputs
     F_thrust_b_sat = [0; 0; F_T_saturated];
-    F_tot_b_sat = F_thrust_b_sat + F_drag_b + F_gravity_b;
+    F_tot_b_sat = F_thrust_b_sat + F_drag_b + F_gravity_b + F_gust_b;
     
     tau_tot_b = tau_saturated + tau_drag;
     
