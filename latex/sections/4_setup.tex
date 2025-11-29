@@ -1,9 +1,91 @@
 \chapter{Simulation setup}\label{ch:Setup}
 
-\section{Model parameters}
+In this chapter, we describe the simulation environment used to validate the control law computed in Chapter \ref{ch:Control}. We define the physical parameters of the Ingenuity helicopter, the controller tuning, the reference trajectories used for testing, the external disturbances applied to check robustness, and the performance metrics used to evaluate the results.
 
-\section{Simulation scenarios}
-% Scenario 1: Hovering, Scenario 2: Step response in position, Scenario 3: Spiral trajectory tracking
+\section{Simulation environment}
+The simulation is implemented in MATLAB. Since the system dynamics derived in Chapter \ref{ch:Dynamics} are nonlinear and continuous in time, we use a standard numerical solver for ordinary differential equations (\texttt{ode15s}) to integrate the system dynamics.
+
+All the simulations are run with a variable time step to ensure numerical stability, but the results are analyzed and plotted over a fixed time span of $T=30$ seconds. The initial condition for all simulations corresponds to Ingenuity being on the ground (zero altitude) and the rotors spinning to generate a thrust equal to the vehicle's weight (hovering condition), to simulate a realistic takeoff scenario.
+
+\section{Model parameters}
+The physical parameters used in the simulation represent the Ingenuity helicopter operating in the Martian environment. The mass and gravity acceleration are taken from the mission data \cite{Grip2019}. The inertia tensor is approximated as a diagonal matrix, and the aerodynamic and drag coefficients are estimated to provide a realistic damping effect. Table \ref{tab:parameters} summarizes these parameters.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Physical parameters of the Ingenuity model.}
+    \label{tab:parameters}
+    \begin{tabular}{lcc}
+        \hline
+        \textbf{Parameter} & \textbf{Symbol} & \textbf{Value} \\
+        \hline
+        Mass & $m$ & $1.8$ kg \\
+        Mars Gravity & $g$ & $3.69$ m/s$^2$ \\
+        Inertia ($x$-axis) & $I_{xx}$ & $0.02$ kg$\cdot$m$^2$ \\
+        Inertia ($y$-axis) & $I_{yy}$ & $0.02$ kg$\cdot$m$^2$ \\
+        Inertia ($z$-axis) & $I_{zz}$ & $0.03$ kg$\cdot$m$^2$ \\
+        Translational drag & $\bs{A}_\text{trans}$ & $\text{diag}(0.05, 0.05, 0.1)$ N$\cdot$s/m \\
+        Rotational drag & $\bs{A}_\text{rot}$ & $\text{diag}(0.01, 0.01, 0.05)$ N$\cdot$m$\cdot$s \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\section{Controller implementation}
+\subsection{Gain tuning}
+The dynamic feedback linearization controller transforms the nonlinear system into decoupled chains of linear integrators. We stabilize these chains by assigning the poles of the error dynamics.
+
+For the position subsystem, which has a relative degree of $r=4$, the error dynamics are described by the linear differential equation:
+\[ e^{(4)} + k_3 e^{(3)} + k_2 \ddot{e} + k_1 \dot{e} + k_0 e = 0 \]
+To ensure a fast response with no overshoot, we placed all four poles at $\lambda = -2$ on the real axis. By expanding the characteristic polynomial $(s+2)^4$, we obtained the following gains:
+\[ \bs{k}_p = [k_0, k_1, k_2, k_3] = [16, 32, 24, 8] \]
+These scalars define the diagonal gain matrices used in Eq. \eqref{eq:position_controller} as $\bs{K}_i = k_i \bs{I}_3$, ensuring identical behavior for the $x, y, z$ axes.
+
+For the yaw subsystem ($r=2$), we selected proportional and derivative gains to ensure stable tracking:
+\[ \bs{k}_\psi = [k_{p,\psi}, k_{d,\psi}] = [4, 4] \]
+
+\subsection{Actuator saturation}
+Real actuators cannot produce infinite forces and torques. To make the simulation realistic, we implemented saturation limits on the control inputs based on the known capabilities of Ingenuity's rotors \cite{Grip2019}.
+
+\paragraph{Thrust limits}
+The thrust produced by the rotors is limited by the rotational speed and the atmospheric density. The thrust-to-weight ratio (TWR) of Ingenuity is between 1.3 and 1.6; we selected a nominal maximum limit of 145\%:
+\[ F_\text{max} = 1.45 \cdot mg \approx 9.63 \text { N} \]
+We also enforced a minimum thrust limit of $F_\text{min}=0.3 mg$ to prevent the total thrust from reaching zero, which would cause a singularity in the decoupling matrix $\bs{J}$ (see Chapter \ref{ch:Control}).
+
+\paragraph{Torque limits}
+The control torques $\tau_\phi, \tau_\theta, \tau_\psi$ are saturated at $\pm 0.05$ Nm to represent the physical limits of the cyclic and collective pitch mechanism.
+
+\section{Reference trajectories}
+We define a set of reference trajectories to test the performance of the controller under different conditions. They are chosen so as to evaluate the controller's ability to track both simple and smooth paths, as well as to more aggressive maneuvers.
+
+\paragraph{Box trajectory} This trajectory simulates a patrol mission: the helicopter takes off to an altitude of 5 meters and then follows a square path with a side length of 10 meters. The motion along each segment is generated using quintic polynomials to ensure smooth transitions in position, velocity, acceleration, jerk, and snap. The yaw angle is kept constant at zero throughout the trajectory
+
+\paragraph{Helix trajectory} This trajectory requires the helicopter to ascend while performing a circular motion. It is defined analyitically as:
+\[  \begin{cases}
+x_d(t) = R \cos(\omega_\text{ref}t) \\
+y_d(t) = R \sin(\omega_\text{ref}t) \\
+z_d(t) = \min(v_z t, z_\text{max}) \\
+\end{cases} \]
+where the radius is $R=2$ m, the angular rate is $\omega_\text{ref} = 0.5$ rad/s, and the vertical velocity is $v_z = 0.2$ m/s.
+
+\section{Disturbances}
+To verify the robustness of the controller, we simulate a wind gust disturbance acting on the helicopter during flight. Since the DFL technique relies on exact cancellation of nonlinearities, model uncertainties or external forces can degrade performance. A sudden random constant force vector is added to the translational dynamics (Eq. \eqref{eq:newton}) for a specific duration:
+\begin{equation}
+    \bs{F}_\text{gust} \in [-3, 3] \text{ N} \quad \text{applied for } t\in[10, 20] \text{ s}
+\end{equation}
+This force acts as an unmodeled disturbance that the DFL law cannot cancel out; the outer linear feedback loop must compensate for it to maintain the trajectory.
 
 \section{Performance metrics}
-% RMSE for tracking, settling time, control effort
+To quantitatively evaluate the controller, we compute the following metrics based on the discrete simulation data sampled at time steps $t_k$, for $k=1, \dots, N$.
+
+\paragraph{Tracking error (RMSE)} The root mean square error (RMSE) measures the average deviation of the helicopter from the desired path. In the discrete domain, it is defined as:
+\begin{equation}
+    E_\text{RMSE} = \sqrt{\frac{1}{N} \sum_{k=1}^N ||\bs{P}_d(t_k) - \bs{P}(t_k)||^2}
+\end{equation}
+A lower RMSE indicates better tracking performance.
+
+\paragraph{Average thrust usage} To evaluate the energy demand and the safety margin of the maneuver, we compute the average percentage of the maximum available thrust used during the flight:
+\begin{equation}
+    J_{\%} = \frac{1}{N} \sum_{k=1}^{N} \left( \frac{F_T(t_k)}{F_{\max}} \right) \times 100
+\end{equation}
+A value close to 100\% indicates that the system is operating near its physical limits, leaving little room for error or disturbance rejection, while a lower value implies a safer and more efficient flight.
+
+\paragraph{Settling time *TODO*}

@@ -162,12 +162,12 @@ For the second-order yaw dynamics, we use a PD controller with feedforward:
 The gains in Eqs. \eqref{eq:position_controller} and \eqref{eq:yaw_controller} are chosen to place the poles of the respective error characteristic equations in the left-half of the complex plane, ensuring exponential convergence of the tracking errors to zero.
 
 \section{Control architecture summary}
-The complete control architecture is summarized in Figure \ref{fig:control_diagram}. The outer loop computes the virtual input $\bs{v}$ based on the tracking error. The inner loop computes the state-dependent terms $\bs{l}$ and $\bs{J}$ and uses the DFL law \eqref{eq:dfl_law} to calculate the extended inputs $\tilde{\bs{u}}$. The torque commands are sent to the helicopter, while the thrust rate command $v_T$ is integrated through the dynamic compensator to produce the thrust input $F_T$.
+The complete control architecture is shown in Figure \ref{fig:control_diagram}. The outer loop computes the virtual input $\bs{v}$ based on the tracking error. The inner loop computes the state-dependent terms $\bs{l}$ and $\bs{J}$ and uses the DFL law \eqref{eq:dfl_law} to calculate the extended inputs $\tilde{\bs{u}}$. The torque commands are sent to Ingenuity, while the thrust rate command $v_T$ is integrated through the dynamic compensator to produce the thrust input $F_T$.
 
-*TODO: add block scheme*
-%\begin{figure}[htbp]
-%\centering
-%\includegraphics[width=0.9\textwidth]{images/dfl_diagram_placeholder.png}
-%\caption{Block diagram of the complete DFL control system.}
-%\label{fig:control_diagram}
-%\end{figure}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{images/DFL_block_scheme}
+\caption{Block scheme of the complete DFL control system.}
+\label{fig:control_diagram}
+\end{figure}
+

@@ -1,4 +1,4 @@
-function dxi = ingenuity_dynamics(t, xi, u, p)
+function dxi = ingenuity_open_loop(t, xi, u, p)
     % state xi: [P(3), V_body(3); Euler(3); omega(3)]
     % input u: [F_mag; tau_phi; tau_theta; tau_psi]
 

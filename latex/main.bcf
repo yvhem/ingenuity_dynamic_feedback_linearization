@@ -2354,9 +2354,11 @@
     <bcf:citekey order="4">vendittelli:quad_dfl</bcf:citekey>
     <bcf:citekey order="5">vendittelli:ingenuity_model</bcf:citekey>
     <bcf:citekey order="6">Grip2019</bcf:citekey>
-    <bcf:citekey order="7">Balaram2018</bcf:citekey>
-    <bcf:citekey order="8">vendittelli:quad_dfl</bcf:citekey>
-    <bcf:citekey order="9">vendittelli:ingenuity_model</bcf:citekey>
+    <bcf:citekey order="7">Grip2019</bcf:citekey>
+    <bcf:citekey order="8">Grip2019</bcf:citekey>
+    <bcf:citekey order="9">Balaram2018</bcf:citekey>
+    <bcf:citekey order="10">vendittelli:quad_dfl</bcf:citekey>
+    <bcf:citekey order="11">vendittelli:ingenuity_model</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">
