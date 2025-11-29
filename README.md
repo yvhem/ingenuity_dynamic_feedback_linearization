@@ -60,6 +60,8 @@ This is the main simulation that demonstrates the performance of the DFL traject
 -   **Inner loop:** Computes the state-dependent decoupling matrix $\boldsymbol{J}(\boldsymbol{\xi}, \boldsymbol{\zeta})$ and drift vector $\boldsymbol{l}(\boldsymbol{\xi}, \boldsymbol{\zeta})$, and solves the inverse dynamics to find the commanded torques and the second derivative of thrust $\ddot{F}_T$.
 -   **Dynamic compensator:** The commanded $\ddot{F}_T$ is integrated by the ODE solver to update the compensator states $(F_T, \dot{F}_T)$, which are then used as inputs to the plant model.
 
+![Block scheme illustrating the Dynamic Feedback Linearization (DFL) controller structure.](latex/images/DFL_block_scheme.png)
+
 ### Trajectory generation
 `traj_utils.m` is a utility that provides the reference position and its derivatives up to the snap $(P_d, \dot{P}_d, \ddot{P}_d, P_d^{(3)}, P_d^{(4)})$, as well as the reference yaw and its derivatives. It supports multiple trajectory types for testing.
 
