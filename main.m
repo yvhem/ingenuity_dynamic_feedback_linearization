@@ -19,7 +19,7 @@ params.TWR = 1.45;
 
 %% disturbance
 % wind gust with random magnitude +/- 3N on x,y,z
-params.gust_force = (rand(3,1) - 0.5) * 6; 
+params.gust_force = (rand(3,1) - 0.5) * 3; 
 params.gust_start = 10.0; 
 params.gust_end = 20.0;
 
@@ -102,31 +102,30 @@ y_patch_4 = [ylim_4(1), ylim_4(1), ylim_4(2), ylim_4(2)];
 patch(x_patch, y_patch_4, 'k', 'FaceAlpha', 0.1, 'EdgeColor', 'none', 'HandleVisibility', 'off');
 
 %% performance metrics
-pos_errors = zeros(length(t), 1);
-
-% avg thrust capacity
-F_max = params.TWR * params.m * params.g; % saturation limit
-capacity_usage_sum = 0;
-
-for k = 1:length(t)
-    % get reference and state at this time step
-    ref_k = traj_utils(t(k), trajectory_type);
-    P_k = xi(k, 1:3)';       % x,y,z
-    F_T_k = xi(k, 13);       % F_T
-    
-    % position error
-    pos_errors(k) = norm(ref_k.pos - P_k);
-    
-    % capacity usage [%]
-    capacity_usage_sum = capacity_usage_sum + (F_T_k / F_max)*100;
+error_norms = zeros(length(t), 1);
+for k=1:length(t)
+    ref = traj_utils(t(k), trajectory_type);
+    error_norms(k) = norm(ref.pos - xi(k, 1:3)');
 end
 
-% RMSE
-rmse_pos = sqrt(mean(pos_errors.^2));
+% metric 1: global tracking accuracy
+rmse_pos = sqrt(mean(error_norms.^2));
+max_error = max(error_norms);
 
-% avg thrust usage
-avg_capacity_usage = capacity_usage_sum / length(t);
+% metric 2: robustness (wind rejection)
+idx_gust = t >= params.gust_start & t <= params.gust_end;
+if any(idx_gust)
+    max_gust_error = max(error_norms(idx_gust));
+else
+    max_gust_error = 0;
+end
+
+% metric 3: control effort: % of time the motors were saturated
+is_saturated = (F_T_hist >= (F_max - 1e-3)) | (F_T_hist <= (F_min + 1e-3));
+saturation_pct = (sum(is_saturated) / length(t)) * 100;
 
 % display results
 fprintf('RMSE position:\t\t%.4f [m]\n', rmse_pos);
-fprintf('Avg thrust usage:\t%.2f %%\n', avg_capacity_usage);
+fprintf('MAE:\t\t\t%.4f [m]\n', max_error);
+fprintf('Max error during gust:\t%.4f [m]\n', max_gust_error);
+fprintf('Actuator saturation:\t%.2f %% of flight time\n', saturation_pct);

@@ -76,16 +76,18 @@ This force acts as an unmodeled disturbance that the DFL law cannot cancel out; 
 \section{Performance metrics}
 To quantitatively evaluate the controller, we compute the following metrics based on the discrete simulation data sampled at time steps $t_k$, for $k=1, \dots, N$.
 
-\paragraph{Tracking error (RMSE)} The root mean square error (RMSE) measures the average deviation of the helicopter from the desired path. In the discrete domain, it is defined as:
+\paragraph{Position tracking error} We evaluate the global tracking performance using the \textit{root mean square error} (RMSE) and the \textit{maximum absolute error} (MAE) $e_\text{max}$. The latter is particularly important for \textit{safety}, as it represents the closest the drone came to deviating dangerously from the path.
 \begin{equation}
-    E_\text{RMSE} = \sqrt{\frac{1}{N} \sum_{k=1}^N ||\bs{P}_d(t_k) - \bs{P}(t_k)||^2}
+    E_\text{RMSE} = \sqrt{\frac{1}{N} \sum_{k=1}^N \|\bs{e}_P(t_k)\|^2}, \quad e_{\max} = \max_{k} \|\bs{e}_P(t_k)\|
 \end{equation}
-A lower RMSE indicates better tracking performance.
 
-\paragraph{Average thrust usage} To evaluate the energy demand and the safety margin of the maneuver, we compute the average percentage of the maximum available thrust used during the flight:
+\paragraph{Robustness to disturbances} To assess the controller's ability to reject unmodeled dynamics, we compute the maximum tracking error specifically during the wind gust interval ($t \in [10, 20]$ s):
 \begin{equation}
-    J_{\%} = \frac{1}{N} \sum_{k=1}^{N} \left( \frac{F_T(t_k)}{F_{\max}} \right) \times 100
+    e_\text{gust} = \max_{t_k \in [10, 20]} \|\bs{e}_P(t_k)\|
 \end{equation}
-A value close to 100\% indicates that the system is operating near its physical limits, leaving little room for error or disturbance rejection, while a lower value implies a safer and more efficient flight.
 
-\paragraph{Settling time *TODO*}
+\paragraph{Actuator saturation} We evaluate the \textit{feasibility} of the control effort by calculating the percentage of flight time where the thrust input reached its physical saturation limits ($F_\text{min}$ or $F_\text{max}$):
+\begin{equation}
+    S_{\%} = \frac{N_\text{sat}}{N} \cdot 100
+\end{equation}
+A non-zero value indicates that the controller requested more power than the actuators could provide, leading to unavoidable tracking degradation.

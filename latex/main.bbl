@@ -1,5 +1,5 @@
 % $ biblatex auxiliary file $
-% $ biblatex bbl format version 3.3 $
+% $ biblatex bbl format version 3.2 $
 % Do not modify the above lines!
 %
 % This is an auxiliary file used by the 'biblatex' package.
@@ -18,8 +18,8 @@
 
 
 \refsection{0}
-  \datalist[entry]{none/global//global/global/global}
-    \entry{Grip2019}{inproceedings}{}{}
+  \datalist[entry]{none/global//global/global}
+    \entry{Grip2019}{inproceedings}{}
       \name{author}{13}{}{%
         {{hash=3ae6c2aa3dbf71e5190af11d12ba0372}{%
            family={Grip},
@@ -87,14 +87,12 @@
            given={Allen},
            giveni={A\bibinitperiod}}}%
       }
-      \strng{namehash}{0630896b9a0cde54739ecfb5c9ef09c5}
+      \strng{namehash}{0c30b462e8a8c32c6be5ae26e8a09b54}
       \strng{fullhash}{170bb9cef54d995819ebe076c2631034}
-      \strng{fullhashraw}{170bb9cef54d995819ebe076c2631034}
-      \strng{bibnamehash}{0630896b9a0cde54739ecfb5c9ef09c5}
-      \strng{authorbibnamehash}{0630896b9a0cde54739ecfb5c9ef09c5}
-      \strng{authornamehash}{0630896b9a0cde54739ecfb5c9ef09c5}
+      \strng{bibnamehash}{0c30b462e8a8c32c6be5ae26e8a09b54}
+      \strng{authorbibnamehash}{0c30b462e8a8c32c6be5ae26e8a09b54}
+      \strng{authornamehash}{0c30b462e8a8c32c6be5ae26e8a09b54}
       \strng{authorfullhash}{170bb9cef54d995819ebe076c2631034}
-      \strng{authorfullhashraw}{170bb9cef54d995819ebe076c2631034}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
@@ -106,7 +104,7 @@
       \verb 10.2514/6.2019-1289
       \endverb
     \endentry
-    \entry{Balaram2018}{inproceedings}{}{}
+    \entry{Balaram2018}{inproceedings}{}
       \name{author}{13}{}{%
         {{hash=6bcf3f650eedeb22ee5f63f5c42706cc}{%
            family={Balaram},
@@ -174,14 +172,12 @@
            given={Allen},
            giveni={A\bibinitperiod}}}%
       }
-      \strng{namehash}{e0fa8454b6d9af8c6f9ed91769948e16}
+      \strng{namehash}{78daf0b28d62556fdbe14e5db6b594ea}
       \strng{fullhash}{dfd8493e2a2a31955dbcbff26c2c7f36}
-      \strng{fullhashraw}{dfd8493e2a2a31955dbcbff26c2c7f36}
-      \strng{bibnamehash}{e0fa8454b6d9af8c6f9ed91769948e16}
-      \strng{authorbibnamehash}{e0fa8454b6d9af8c6f9ed91769948e16}
-      \strng{authornamehash}{e0fa8454b6d9af8c6f9ed91769948e16}
+      \strng{bibnamehash}{78daf0b28d62556fdbe14e5db6b594ea}
+      \strng{authorbibnamehash}{78daf0b28d62556fdbe14e5db6b594ea}
+      \strng{authornamehash}{78daf0b28d62556fdbe14e5db6b594ea}
       \strng{authorfullhash}{dfd8493e2a2a31955dbcbff26c2c7f36}
-      \strng{authorfullhashraw}{dfd8493e2a2a31955dbcbff26c2c7f36}
       \field{sortinit}{2}
       \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
@@ -193,7 +189,7 @@
       \verb 10.2514/6.2018-0023
       \endverb
     \endentry
-    \entry{vendittelli:quad_dfl}{misc}{}{}
+    \entry{vendittelli:quad_dfl}{misc}{}
       \name{author}{1}{}{%
         {{hash=5b47f42b15de26aa5c6858fa40324a84}{%
            family={Vendittelli},
@@ -203,12 +199,10 @@
       }
       \strng{namehash}{5b47f42b15de26aa5c6858fa40324a84}
       \strng{fullhash}{5b47f42b15de26aa5c6858fa40324a84}
-      \strng{fullhashraw}{5b47f42b15de26aa5c6858fa40324a84}
       \strng{bibnamehash}{5b47f42b15de26aa5c6858fa40324a84}
       \strng{authorbibnamehash}{5b47f42b15de26aa5c6858fa40324a84}
       \strng{authornamehash}{5b47f42b15de26aa5c6858fa40324a84}
       \strng{authorfullhash}{5b47f42b15de26aa5c6858fa40324a84}
-      \strng{authorfullhashraw}{5b47f42b15de26aa5c6858fa40324a84}
       \field{extraname}{1}
       \field{sortinit}{4}
       \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
@@ -219,7 +213,7 @@
       \field{title}{Quadrotor control via dynamic feedback linearization}
       \field{year}{2024}
     \endentry
-    \entry{vendittelli:ingenuity_model}{misc}{}{}
+    \entry{vendittelli:ingenuity_model}{misc}{}
       \name{author}{1}{}{%
         {{hash=5b47f42b15de26aa5c6858fa40324a84}{%
            family={Vendittelli},
@@ -229,12 +223,10 @@
       }
       \strng{namehash}{5b47f42b15de26aa5c6858fa40324a84}
       \strng{fullhash}{5b47f42b15de26aa5c6858fa40324a84}
-      \strng{fullhashraw}{5b47f42b15de26aa5c6858fa40324a84}
       \strng{bibnamehash}{5b47f42b15de26aa5c6858fa40324a84}
       \strng{authorbibnamehash}{5b47f42b15de26aa5c6858fa40324a84}
       \strng{authornamehash}{5b47f42b15de26aa5c6858fa40324a84}
       \strng{authorfullhash}{5b47f42b15de26aa5c6858fa40324a84}
-      \strng{authorfullhashraw}{5b47f42b15de26aa5c6858fa40324a84}
       \field{extraname}{2}
       \field{sortinit}{5}
       \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
