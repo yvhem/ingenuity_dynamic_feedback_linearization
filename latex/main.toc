@@ -15,18 +15,36 @@
 \contentsline {subsection}{\numberline {2.3.3}Rotational dynamics}{7}{subsection.2.3.3}%
 \contentsline {section}{\numberline {2.4}Complete state-space model}{8}{section.2.4}%
 \contentsline {chapter}{\numberline {3}Control design}{9}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Objective}{9}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Relative degree calculation}{9}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Dynamic compensator design}{9}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Linearizing control law}{9}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Linear tracking controller}{9}{section.3.5}%
-\contentsline {chapter}{\numberline {4}Simulation setup}{10}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Model parameters}{10}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Simulation scenarios}{10}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Performance metrics}{10}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Results}{11}{chapter.5}%
-\contentsline {section}{\numberline {5.1}TODO: task}{11}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Analysis}{11}{section.5.2}%
-\contentsline {chapter}{\numberline {6}Conclusion}{12}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Summary}{12}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Future work}{12}{section.6.2}%
+\contentsline {section}{\numberline {3.1}Dynamic feedback linearization}{9}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Ingenuity DFL}{10}{subsection.3.1.1}%
+\contentsline {subsubsection}{Yaw channel}{10}{section*.7}%
+\contentsline {subsubsection}{Position channel}{10}{section*.8}%
+\contentsline {subsubsection}{Dynamic compensator}{11}{section*.9}%
+\contentsline {subsubsection}{Linearizing control law}{11}{section*.10}%
+\contentsline {paragraph}{Decoupling matrix $\boldsymbol {J}$}{12}{section*.11}%
+\contentsline {paragraph}{Drift vector $\boldsymbol {l}$}{12}{section*.12}%
+\contentsline {paragraph}{Control law}{13}{section*.13}%
+\contentsline {subsubsection}{Outer-loop tracking controller}{13}{section*.14}%
+\contentsline {section}{\numberline {3.2}Control architecture summary}{13}{section.3.2}%
+\contentsline {chapter}{\numberline {4}Simulation setup}{15}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Simulation environment}{15}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Model parameters}{15}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Controller implementation}{16}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Gain tuning}{16}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Actuator saturation}{16}{subsection.4.3.2}%
+\contentsline {paragraph}{Thrust limits}{16}{section*.17}%
+\contentsline {paragraph}{Torque limits}{16}{section*.18}%
+\contentsline {section}{\numberline {4.4}Reference trajectories}{16}{section.4.4}%
+\contentsline {paragraph}{Box trajectory}{17}{section*.19}%
+\contentsline {paragraph}{Helix trajectory}{17}{section*.20}%
+\contentsline {section}{\numberline {4.5}Disturbances}{17}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Performance metrics}{17}{section.4.6}%
+\contentsline {paragraph}{Position tracking error}{17}{section*.21}%
+\contentsline {paragraph}{Robustness to disturbances}{17}{section*.22}%
+\contentsline {paragraph}{Actuator saturation}{18}{section*.23}%
+\contentsline {chapter}{\numberline {5}Results}{19}{chapter.5}%
+\contentsline {section}{\numberline {5.1}TODO: task}{19}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Analysis}{19}{section.5.2}%
+\contentsline {chapter}{\numberline {6}Conclusion}{20}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Summary}{20}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Future work}{20}{section.6.2}%

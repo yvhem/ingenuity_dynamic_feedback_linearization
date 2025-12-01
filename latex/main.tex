@@ -14,8 +14,16 @@
 \usepackage{mathtools}
 \usepackage{multirow}
 \usepackage{subcaption}
+\usepackage{cancel}
+\usepackage{tikz}
+\newcommand{\circledmath}[1]{%
+    \tikz[baseline=(M.base)]
+    \node[draw, circle, inner sep=2pt] (M) {$\displaystyle #1$};%
+}
 \usepackage[backend=biber,style=ieee]{biblatex}
 \addbibresource{ref.bib}
+
+
 
 \hypersetup{
     colorlinks=true,

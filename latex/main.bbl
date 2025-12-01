@@ -1,5 +1,5 @@
 % $ biblatex auxiliary file $
-% $ biblatex bbl format version 3.2 $
+% $ biblatex bbl format version 3.3 $
 % Do not modify the above lines!
 %
 % This is an auxiliary file used by the 'biblatex' package.
@@ -18,34 +18,8 @@
 
 
 \refsection{0}
-  \datalist[entry]{none/global//global/global}
-    \entry{wiki:ingenuity}{misc}{}
-      \name{author}{1}{}{%
-        {{hash=b6aea1a416c89509a7df1cbb69249cb6}{%
-           family={{Wikipedia contributors}},
-           familyi={W\bibinitperiod}}}%
-      }
-      \strng{namehash}{b6aea1a416c89509a7df1cbb69249cb6}
-      \strng{fullhash}{b6aea1a416c89509a7df1cbb69249cb6}
-      \strng{bibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
-      \strng{authorbibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
-      \strng{authornamehash}{b6aea1a416c89509a7df1cbb69249cb6}
-      \strng{authorfullhash}{b6aea1a416c89509a7df1cbb69249cb6}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{note}{[Online; accessed 25-Nov-2025]}
-      \field{title}{Ingenuity (helicopter) --- {Wikipedia}{,} The Free Encyclopedia}
-      \field{year}{2024}
-      \verb{urlraw}
-      \verb https://en.wikipedia.org/wiki/Ingenuity_(helicopter)
-      \endverb
-      \verb{url}
-      \verb https://en.wikipedia.org/wiki/Ingenuity_(helicopter)
-      \endverb
-    \endentry
-    \entry{Grip2019}{inproceedings}{}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{Grip2019}{inproceedings}{}{}
       \name{author}{13}{}{%
         {{hash=3ae6c2aa3dbf71e5190af11d12ba0372}{%
            family={Grip},
@@ -113,14 +87,16 @@
            given={Allen},
            giveni={A\bibinitperiod}}}%
       }
-      \strng{namehash}{0c30b462e8a8c32c6be5ae26e8a09b54}
+      \strng{namehash}{0630896b9a0cde54739ecfb5c9ef09c5}
       \strng{fullhash}{170bb9cef54d995819ebe076c2631034}
-      \strng{bibnamehash}{0c30b462e8a8c32c6be5ae26e8a09b54}
-      \strng{authorbibnamehash}{0c30b462e8a8c32c6be5ae26e8a09b54}
-      \strng{authornamehash}{0c30b462e8a8c32c6be5ae26e8a09b54}
+      \strng{fullhashraw}{170bb9cef54d995819ebe076c2631034}
+      \strng{bibnamehash}{0630896b9a0cde54739ecfb5c9ef09c5}
+      \strng{authorbibnamehash}{0630896b9a0cde54739ecfb5c9ef09c5}
+      \strng{authornamehash}{0630896b9a0cde54739ecfb5c9ef09c5}
       \strng{authorfullhash}{170bb9cef54d995819ebe076c2631034}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \strng{authorfullhashraw}{170bb9cef54d995819ebe076c2631034}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{AIAA Scitech 2019 Forum}
@@ -130,34 +106,7 @@
       \verb 10.2514/6.2019-1289
       \endverb
     \endentry
-    \entry{comsol:swashplate}{misc}{}
-      \name{author}{1}{}{%
-        {{hash=4b9864ba08004e820f2017db6fba97f6}{%
-           family={{COMSOL Multiphysics}},
-           familyi={C\bibinitperiod}}}%
-      }
-      \strng{namehash}{4b9864ba08004e820f2017db6fba97f6}
-      \strng{fullhash}{4b9864ba08004e820f2017db6fba97f6}
-      \strng{bibnamehash}{4b9864ba08004e820f2017db6fba97f6}
-      \strng{authorbibnamehash}{4b9864ba08004e820f2017db6fba97f6}
-      \strng{authornamehash}{4b9864ba08004e820f2017db6fba97f6}
-      \strng{authorfullhash}{4b9864ba08004e820f2017db6fba97f6}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{COMSOL Application Gallery}
-      \field{note}{[Online; version 5.6; accessed 25-Nov-2025]}
-      \field{title}{Helicopter Swashplate}
-      \field{year}{2020}
-      \verb{urlraw}
-      \verb https://doc.comsol.com/5.6/doc/com.comsol.help.models.mbd.helicopter_swashplate/helicopter_swashplate.html
-      \endverb
-      \verb{url}
-      \verb https://doc.comsol.com/5.6/doc/com.comsol.help.models.mbd.helicopter_swashplate/helicopter_swashplate.html
-      \endverb
-    \endentry
-    \entry{Balaram2018}{inproceedings}{}
+    \entry{Balaram2018}{inproceedings}{}{}
       \name{author}{13}{}{%
         {{hash=6bcf3f650eedeb22ee5f63f5c42706cc}{%
            family={Balaram},
@@ -225,14 +174,16 @@
            given={Allen},
            giveni={A\bibinitperiod}}}%
       }
-      \strng{namehash}{78daf0b28d62556fdbe14e5db6b594ea}
+      \strng{namehash}{e0fa8454b6d9af8c6f9ed91769948e16}
       \strng{fullhash}{dfd8493e2a2a31955dbcbff26c2c7f36}
-      \strng{bibnamehash}{78daf0b28d62556fdbe14e5db6b594ea}
-      \strng{authorbibnamehash}{78daf0b28d62556fdbe14e5db6b594ea}
-      \strng{authornamehash}{78daf0b28d62556fdbe14e5db6b594ea}
+      \strng{fullhashraw}{dfd8493e2a2a31955dbcbff26c2c7f36}
+      \strng{bibnamehash}{e0fa8454b6d9af8c6f9ed91769948e16}
+      \strng{authorbibnamehash}{e0fa8454b6d9af8c6f9ed91769948e16}
+      \strng{authornamehash}{e0fa8454b6d9af8c6f9ed91769948e16}
       \strng{authorfullhash}{dfd8493e2a2a31955dbcbff26c2c7f36}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \strng{authorfullhashraw}{dfd8493e2a2a31955dbcbff26c2c7f36}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2018 AIAA Atmospheric Flight Mechanics Conference}
@@ -242,37 +193,57 @@
       \verb 10.2514/6.2018-0023
       \endverb
     \endentry
-    \entry{Slotine1991}{book}{}
-      \name{author}{2}{}{%
-        {{hash=1dc6c2ca8255505108e7ed377ab4c534}{%
-           family={Slotine},
-           familyi={S\bibinitperiod},
-           given={Jean-Jacques\bibnamedelima E.},
-           giveni={J\bibinithyphendelim J\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
-        {{hash=56a2cc9043bd27ea8b4615a383f2b778}{%
-           family={Li},
-           familyi={L\bibinitperiod},
-           given={Weiping},
-           giveni={W\bibinitperiod}}}%
+    \entry{vendittelli:quad_dfl}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=5b47f42b15de26aa5c6858fa40324a84}{%
+           family={Vendittelli},
+           familyi={V\bibinitperiod},
+           given={Marilena},
+           giveni={M\bibinitperiod}}}%
       }
-      \list{location}{1}{%
-        {Englewood Cliffs, N.J.}%
-      }
-      \list{publisher}{1}{%
-        {Prentice Hall}%
-      }
-      \strng{namehash}{14f11c338ebd4957611f048b3567a733}
-      \strng{fullhash}{14f11c338ebd4957611f048b3567a733}
-      \strng{bibnamehash}{14f11c338ebd4957611f048b3567a733}
-      \strng{authorbibnamehash}{14f11c338ebd4957611f048b3567a733}
-      \strng{authornamehash}{14f11c338ebd4957611f048b3567a733}
-      \strng{authorfullhash}{14f11c338ebd4957611f048b3567a733}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \strng{namehash}{5b47f42b15de26aa5c6858fa40324a84}
+      \strng{fullhash}{5b47f42b15de26aa5c6858fa40324a84}
+      \strng{fullhashraw}{5b47f42b15de26aa5c6858fa40324a84}
+      \strng{bibnamehash}{5b47f42b15de26aa5c6858fa40324a84}
+      \strng{authorbibnamehash}{5b47f42b15de26aa5c6858fa40324a84}
+      \strng{authornamehash}{5b47f42b15de26aa5c6858fa40324a84}
+      \strng{authorfullhash}{5b47f42b15de26aa5c6858fa40324a84}
+      \strng{authorfullhashraw}{5b47f42b15de26aa5c6858fa40324a84}
+      \field{extraname}{1}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{title}{Applied Nonlinear Control}
-      \field{year}{1991}
+      \field{howpublished}{Course Slides, Elective in Robotics}
+      \field{note}{Sapienza University of Rome}
+      \field{title}{Quadrotor control via dynamic feedback linearization}
+      \field{year}{2024}
+    \endentry
+    \entry{vendittelli:ingenuity_model}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=5b47f42b15de26aa5c6858fa40324a84}{%
+           family={Vendittelli},
+           familyi={V\bibinitperiod},
+           given={Marilena},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{5b47f42b15de26aa5c6858fa40324a84}
+      \strng{fullhash}{5b47f42b15de26aa5c6858fa40324a84}
+      \strng{fullhashraw}{5b47f42b15de26aa5c6858fa40324a84}
+      \strng{bibnamehash}{5b47f42b15de26aa5c6858fa40324a84}
+      \strng{authorbibnamehash}{5b47f42b15de26aa5c6858fa40324a84}
+      \strng{authornamehash}{5b47f42b15de26aa5c6858fa40324a84}
+      \strng{authorfullhash}{5b47f42b15de26aa5c6858fa40324a84}
+      \strng{authorfullhashraw}{5b47f42b15de26aa5c6858fa40324a84}
+      \field{extraname}{2}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Course Slides, Elective in Robotics}
+      \field{note}{Sapienza University of Rome}
+      \field{title}{Ingenuity dynamic model (co-axial rotor helicopter)}
+      \field{year}{2024}
     \endentry
   \enddatalist
 \endrefsection
