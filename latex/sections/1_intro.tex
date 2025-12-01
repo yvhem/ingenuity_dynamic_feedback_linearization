@@ -33,13 +33,12 @@ We adopt an approach from nonlinear control theory known as \textit{dynamic feed
 The "dynamic" aspect of DFL refers to an extension of the method that is necessary when the control inputs do not immediately affect the outputs, requiring the controller to have its own internal dynamics. As we will show, this is precisely the case for controlling the position of a co-axial helicopter like Ingenuity using the swashplate mechanism.
 
 \section{Objective}
-The main goal of this project is to formally analyze the dynamic feedback linearizability of the Ingenuity helicopter, design a state feedback controller for *TODO: add task*, and validate its performance through simulations. Specifically, we aim to:
+The main goal of this project is to formally analyze the dynamic feedback linearizability of the Ingenuity helicopter, design a state feedback controller for \textit{trajectory tracking}, and validate its performance and robustness through turbances and simulations. Specifically, we aim to:
 \begin{enumerate}
     \item Develop a dynamic model of Ingenuity based on Newton-Euler equations, capturing the key dynamics and couplings introduced by the co-axial rotor configuration;
     \item analyze such dynamics to determine the conditions under which the system can be linearized using dynamic feedback;
     \item design the nonlinear control law that achieves linearization and decoupling;
-    %\item implement a tracking controller for the linearized system to follow aggressive trajectories;
-    \item *TODO: implement a controller to carry out some task*;
+    \item implement a tracking controller for the linearized system;
     \item evaluate the performance of our controller in simulation under various scenarios and for different maneuvers.
 \end{enumerate}
 

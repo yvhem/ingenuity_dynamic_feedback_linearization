@@ -129,3 +129,8 @@ fprintf('RMSE position:\t\t%.4f [m]\n', rmse_pos);
 fprintf('MAE:\t\t\t%.4f [m]\n', max_error);
 fprintf('Max error during gust:\t%.4f [m]\n', max_gust_error);
 fprintf('Actuator saturation:\t%.2f %% of flight time\n', saturation_pct);
+
+% Se l'errore a tempo 0 è uguale al max_error, avvisa l'utente
+if error_norms(1) == max_error
+    fprintf("Max error is equal to error at time 0 (when position is mismatched to the traj)!\n")
+end

@@ -3,18 +3,12 @@
 In this chapter, we develop the mathematical model of the Ingenuity helicopter using Newton-Euler equations. We start by defining the reference frames and the notation used throughout the report, the state and input vectors of the system, and derive the translational and rotational equations of motion governing the vehicle's flight. The dynamic model derived here is based on the formulation presented in \cite{vendittelli:ingenuity_model} and will serve as the basis for the control system design analyzed in Chapter \ref{ch:Control}.
 
 \section{Coordinate frames}
-To describe the motion of Ingenuity, we define two main right-handed coordinate frames, as illustrated in Figure \ref{fig:frames}:
+To describe the motion of Ingenuity, we define two main right-handed coordinate frames:
+
 \begin{itemize}
     \item The \textit{inertial frame} $\{I\}$, which is a fixed non-accelerating frame used as a global reference. Its origin is located at the takeoff point on the Martian surface, and its axes are denoted by $(x_i, y_i, z_i)$. We adopt a $z$-up convention, with the $z_i$ axis pointing vertically upwards in the opposite direction of gravity.
     \item The \textit{body frame} $\{B\}$, which is a frame attached to the vehicle with its origin at the center of mass. Its axes $(x_b, y_b, z_b)$ are aligned with the principal axes of Ingenuity, with $x_b$ pointing forward, $y_b$ pointing to the right, and $z_b$ pointing up along the rotor mast.
 \end{itemize}
-
-%\begin{figure}[htbp]
-%    \centering
-%    \includegraphics[width=0.5\textwidth]{images/frames.png}
-%    \caption{Coordinate frames used to describe the motion of Ingenuity.}
-%    \label{fig:frames}
-%\end{figure}
 
 The orientation of the body frame with respect to the inertial frame is described by a rotation matrix $\bs{R} \in SO(3)$ which transforms vectors from the body frame to the inertial frame. Such a matrix is paramterized using the ZYX Euler angles convention, defined by the yaw ($\psi$), pitch ($\theta$), and roll ($\phi$) angles:
 \begin{equation}\label{eq:rotation_matrix}
