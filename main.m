@@ -1,6 +1,24 @@
 clear; clc; close all;
 
-%% parameters
+%% ========== USER CONFIGURABLE PARAMETERS ==========
+
+% 1. WIND DISTURBANCE
+wind_enabled = true;                % true = wind on, false = wind off
+wind_direction = 'x';               % 'x', 'y', 'z', 'xy', 'xz', 'yz', 'xyz'
+wind_intensity = 0;                 % force magnitude [N]
+wind_start_time = 10.0;             % start time [s]
+wind_end_time = 20.0;               % end time [s]
+
+% 2. TRAJECTORY
+trajectory_type = 'eight';          % 'box', 'helix', 'eight'
+
+% 3. SIMULATION TIME
+t_span = [0 30];                    % [start, end] time [s]
+
+% 4. INITIAL THRUST
+initial_thrust_ratio = 1.0;         % ratio of hover thrust (1.0 = mg)
+
+%% ========== SYSTEM PARAMETERS (FIXED) ==========
 params.m = 1.8;      % mass [kg]
 params.g = 3.69;     % Mars gravity [m/s^2]
 params.I = diag([0.02, 0.02, 0.03]); 
@@ -15,23 +33,34 @@ params.kp = [16, 32, 24, 8];
 params.kpsi = [4, 4];
 
 % thrust-to-weight ratio (130-160%)
-params.TWR = 1.45; 
+params.TWR = 1.45;  
 
-%% disturbance
-% wind gust with random magnitude +/- 3N on x,y,z
-params.gust_force = (rand(3,1) - 0.5) * 3; 
-params.gust_start = 10.0; 
-params.gust_end = 20.0;
+%% ========== WIND CONFIGURATION ==========
+if wind_enabled
+    % Parse wind direction
+    wind_vec = [0; 0; 0];
+    if contains(lower(wind_direction), 'x')
+        wind_vec(1) = (rand() - 0.5) * 2 * wind_intensity;
+    end
+    if contains(lower(wind_direction), 'y')
+        wind_vec(2) = (rand() - 0.5) * 2 * wind_intensity;
+    end
+    if contains(lower(wind_direction), 'z')
+        wind_vec(3) = (rand() - 0.5) * 2 * wind_intensity;
+    end
+    params.gust_force = wind_vec;
+    params.gust_start = wind_start_time;
+    params.gust_end = wind_end_time;
+else
+    params.gust_force = [0; 0; 0];
+    params.gust_start = inf;
+    params.gust_end = inf;
+end
 
-%% sim setup
-t_span = [0 30];
-trajectory_type = 'helix'; % 'box', 'helix'
-
-% initial state
+%% ========== INITIAL STATE ==========
 xi0 = zeros(14,1);
-% start on the ground (z=0) compensating for gravity (F_T=mg)
-xi0(3) = 0.0;
-xi0(13) = params.m * params.g;
+xi0(3) = 0.0;  % start on the ground (z=0)
+xi0(13) = initial_thrust_ratio * params.m * params.g;  % initial thrust
 
 % run sim
 options = odeset('RelTol', 1e-6, 'AbsTol', 1e-6);
@@ -129,8 +158,3 @@ fprintf('RMSE position:\t\t%.4f [m]\n', rmse_pos);
 fprintf('MAE:\t\t\t%.4f [m]\n', max_error);
 fprintf('Max error during gust:\t%.4f [m]\n', max_gust_error);
 fprintf('Actuator saturation:\t%.2f %% of flight time\n', saturation_pct);
-
-% Se l'errore a tempo 0 è uguale al max_error, avvisa l'utente
-if error_norms(1) == max_error
-    fprintf("Max error is equal to error at time 0 (when position is mismatched to the traj)!\n")
-end

@@ -8,6 +8,8 @@ function ref = traj_utils(t, type)
     switch lower(type)
         case 'box'
             ref = box_traj(t);
+        case 'eight'
+            ref = eight_traj(t);
         otherwise
             ref = helix_traj(t);
     end
@@ -120,4 +122,56 @@ function ref = helix_traj(t)
     % Set yaw
     % Also here as in the box trajcetory yaw is not of interest
     ref.psi = 0; ref.psi_dot = 0; ref.psi_ddot = 0;
+end
+
+%% Figure-eight (lemniscate) trajectory
+function ref = eight_traj(t)
+    % Settings of the trajectory
+    scale = 3.0;          % size of the figure-eight
+    omega_ref = 0.4;      % angular frequency
+    altitude = 5.0;       % constant altitude
+    z_rise_time = 25.0;   % time to reach altitude
+    
+    % Parametric equations for lemniscate of Gerono
+    % x(t) = a * cos(omega*t)
+    % y(t) = a * sin(omega*t) * cos(omega*t) = (a/2) * sin(2*omega*t)
+    
+    wt = omega_ref * t;
+    
+    % Positions
+    x = scale * cos(wt);
+    y = 0.5 * scale * sin(2 * wt);
+    z = min(altitude, (altitude / z_rise_time) * t);
+    
+    % Velocities
+    vx = -scale * omega_ref * sin(wt);
+    vy = scale * omega_ref * cos(2 * wt);
+    vz = (t < z_rise_time) * (altitude / z_rise_time);
+    
+    % Accelerations
+    ax = -scale * omega_ref^2 * cos(wt);
+    ay = -2 * scale * omega_ref^2 * sin(2 * wt);
+    az = 0;
+    
+    % Jerk
+    jx = scale * omega_ref^3 * sin(wt);
+    jy = -4 * scale * omega_ref^3 * cos(2 * wt);
+    jz = 0;
+    
+    % Snap
+    sx = scale * omega_ref^4 * cos(wt);
+    sy = 8 * scale * omega_ref^4 * sin(2 * wt);
+    sz = 0;
+    
+    % Set state
+    ref.pos = [x; y; z];
+    ref.vel = [vx; vy; vz];
+    ref.acc = [ax; ay; az];
+    ref.jerk = [jx; jy; jz];
+    ref.snap = [sx; sy; sz];
+    
+    % Set yaw
+    ref.psi = 0;
+    ref.psi_dot = 0;
+    ref.psi_ddot = 0;
 end
