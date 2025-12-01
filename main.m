@@ -74,7 +74,7 @@ t_start = params.gust_start;
 t_end   = params.gust_end;
 x_patch = [t_start, t_end, t_end, t_start];
 
-figure('Name', 'Simulation results', 'Color', 'w');
+figure('Name', 'Simulation results', 'Color', 'w', 'Position', [100, 100, 1400, 900]);
 
 % 3D trajectory
 subplot(2,2,1);
@@ -82,17 +82,17 @@ plot3(xi(:,1), xi(:,2), xi(:,3), 'b-', 'LineWidth', 2); hold on;
 plot3(ref_vals(:,1), ref_vals(:,2), ref_vals(:,3), 'k--', 'LineWidth', 1);
 plot3(xi(1,1), xi(1,2), xi(1,3), 'go', 'MarkerFaceColor', 'g', 'DisplayName', 'Start');
 plot3(xi(end,1), xi(end,2), xi(end,3), 'ro', 'MarkerFaceColor', 'r', 'DisplayName', 'End');
-title('Trajectory tracking'); 
-xlabel('x [m]'); ylabel('y [m]'); zlabel('z [m]');
+title('Trajectory tracking', 'FontSize', 12); 
+xlabel('x [m]', 'FontSize', 11); ylabel('y [m]', 'FontSize', 11); zlabel('z [m]', 'FontSize', 11);
 grid on; axis equal; 
-legend('actual', 'reference', 'start', 'end', 'Location', 'best');
+legend('actual', 'reference', 'start', 'end', 'Location', 'northeast', 'FontSize', 9);
 
 % altitude
 subplot(2,2,2); 
 plot(t, xi(:,3), 'b', 'LineWidth', 2); hold on;
 plot(t, ref_vals(:,3), 'k--');
-title('Altitude tracking'); xlabel('t [s]'); ylabel('z [m]'); grid on; 
-legend('actual', 'ref', 'Location', 'best');
+title('Altitude tracking', 'FontSize', 12); xlabel('t [s]', 'FontSize', 11); ylabel('z [m]', 'FontSize', 11); grid on; 
+legend('actual', 'ref', 'Location', 'southeast', 'FontSize', 9);
 % disturbance region
 ylim_2 = ylim;
 y_patch_2 = [ylim_2(1), ylim_2(1), ylim_2(2), ylim_2(2)];
@@ -116,8 +116,8 @@ F_T_plot = max(F_min, min(F_max, F_T_hist));
 plot(t, F_T_plot, 'LineWidth', 2); hold on;
 plot(t, F_T_hist, 'r:', 'LineWidth', 1, 'DisplayName', 'commanded');
 yline(params.m * params.g, 'k--', 'DisplayName', 'hovering');
-title('Thrust'); xlabel('t [s]'); ylabel('force [N]'); grid on;
-legend('applied', 'commanded', 'hovering', 'Location', 'best');
+title('Thrust', 'FontSize', 12); xlabel('t [s]', 'FontSize', 11); ylabel('force [N]', 'FontSize', 11); grid on;
+legend('applied', 'commanded', 'hovering', 'Location', 'northeast', 'FontSize', 9);
 % disturbance region
 ylim_4 = ylim; 
 y_patch_4 = [ylim_4(1), ylim_4(1), ylim_4(2), ylim_4(2)];
