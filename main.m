@@ -1,24 +1,20 @@
 clear; clc; close all;
 
-%% ========== USER CONFIGURABLE PARAMETERS ==========
+% Parameters to config by user
 
-% 1. WIND DISTURBANCE
 wind_enabled = true;                % true = wind on, false = wind off
 wind_direction = 'x';               % 'x', 'y', 'z', 'xy', 'xz', 'yz', 'xyz'
-wind_intensity = 0;                 % force magnitude [N]
+wind_intensity = 6;                 % force magnitude [N]
 wind_start_time = 10.0;             % start time [s]
 wind_end_time = 20.0;               % end time [s]
 
-% 2. TRAJECTORY
-trajectory_type = 'eight';          % 'box', 'helix', 'eight'
+trajectory_type = 'helix';          % 'box', 'helix', 'eight'
 
-% 3. SIMULATION TIME
 t_span = [0 30];                    % [start, end] time [s]
 
-% 4. INITIAL THRUST
 initial_thrust_ratio = 1.0;         % ratio of hover thrust (1.0 = mg)
 
-%% ========== SYSTEM PARAMETERS (FIXED) ==========
+%% Fixed params
 params.m = 1.8;      % mass [kg]
 params.g = 3.69;     % Mars gravity [m/s^2]
 params.I = diag([0.02, 0.02, 0.03]); 
@@ -35,7 +31,6 @@ params.kpsi = [4, 4];
 % thrust-to-weight ratio (130-160%)
 params.TWR = 1.45;  
 
-%% ========== WIND CONFIGURATION ==========
 if wind_enabled
     % Parse wind direction
     wind_vec = [0; 0; 0];
@@ -57,7 +52,6 @@ else
     params.gust_end = inf;
 end
 
-%% ========== INITIAL STATE ==========
 xi0 = zeros(14,1);
 xi0(3) = 0.0;  % start on the ground (z=0)
 xi0(13) = initial_thrust_ratio * params.m * params.g;  % initial thrust
@@ -66,7 +60,6 @@ xi0(13) = initial_thrust_ratio * params.m * params.g;  % initial thrust
 options = odeset('RelTol', 1e-6, 'AbsTol', 1e-6);
 [t, xi] = ode15s(@(t,x) ingenuity_closed_loop(t, x, params, trajectory_type), t_span, xi0, options);
 
-%% visualization
 F_T_hist = xi(:, 13);
 
 ref_vals = [];
@@ -130,7 +123,20 @@ ylim_4 = ylim;
 y_patch_4 = [ylim_4(1), ylim_4(1), ylim_4(2), ylim_4(2)];
 patch(x_patch, y_patch_4, 'k', 'FaceAlpha', 0.1, 'EdgeColor', 'none', 'HandleVisibility', 'off');
 
-%% performance metrics
+if ~exist('plots', 'dir')
+    mkdir('plots');
+end
+
+wind_status = '';
+if wind_enabled
+    wind_status = sprintf('_wind_%s', wind_direction);
+end
+filename = sprintf('plots/sim_%s%s.png', trajectory_type, wind_status);
+
+% Save figure
+saveas(gcf, filename);
+fprintf('Plot saved to: %s\n', filename);
+
 error_norms = zeros(length(t), 1);
 for k=1:length(t)
     ref = traj_utils(t(k), trajectory_type);
