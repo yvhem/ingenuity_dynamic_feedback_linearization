@@ -447,6 +447,8 @@ INPUT .\sections\5_results.tex
 INPUT .\sections\5_results.tex
 INPUT .\sections\5_results.tex
 INPUT sections\5_results.tex
+INPUT C:\Users\andre\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmr7t.vf
+INPUT C:\Users\andre\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmr8r.tfm
 INPUT .\sections\6_conclusion.tex
 INPUT .\sections\6_conclusion.tex
 INPUT .\sections\6_conclusion.tex

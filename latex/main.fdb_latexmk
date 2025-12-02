@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber main"] 1764611457.05329 "main.bcf" "main.bbl" "main" 1764611622.26228 0
-  "main.bcf" 1764611621 108209 747ba4f7eb05b8032f755f75284bfe6d "pdflatex"
+["biber main"] 1764705072.61312 "main.bcf" "main.bbl" "main" 1764705089.38593 0
+  "main.bcf" 1764705088 108209 747ba4f7eb05b8032f755f75284bfe6d "pdflatex"
   "ref.bib" 1764325043 2560 4a7f087ab3fe0a7b124f70361e3b8018 ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1764611617.49515 "c:/Users/andre/OneDrive/Desktop/Sapienza/Third_semester/ingenuity_dynamic_feedback_linearization/latex/main.tex" "main.pdf" "main" 1764611622.26447 0
+["pdflatex"] 1764705086.89608 "c:/Users/andre/OneDrive/Desktop/Sapienza/Third_semester/ingenuity_dynamic_feedback_linearization/latex/main.tex" "main.pdf" "main" 1764705089.38718 0
   "C:/Users/andre/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1764325727 82705 9cc9f144eacd499bc23a611703921467 ""
   "C:/Users/andre/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1720463491 24264716 b3346befb64b7f02c568564e789e648c ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -226,17 +226,17 @@
   "images/ingenuity.png" 1764324893 213987 0ab97b5c5236ffba1dec576cadc70b11 ""
   "images/logo.png" 1764324893 14404 5bc3f5290854f23c211c6fae3f8d8b8f ""
   "images/swashplate.png" 1764324893 41601 b0f4173d66082d72f012f73362866182 ""
-  "main.aux" 1764611621 11122 bc9062dd07b8857def91a0153132f019 "pdflatex"
-  "main.bbl" 1764611461 10031 fb9d89dd70c72189008b42f1d726652f "biber main"
-  "main.out" 1764611621 4381 f7d65b57ab7ce7f96dc1e9024528b88e "pdflatex"
-  "main.run.xml" 1764611621 2395 f2a1fca05fa97d6940e5c3cdcd902eff "pdflatex"
+  "main.aux" 1764705088 11228 074f911de9d68a4fcaa127eeca865b95 "pdflatex"
+  "main.bbl" 1764705081 10031 fb9d89dd70c72189008b42f1d726652f "biber main"
+  "main.out" 1764705088 4381 f7d65b57ab7ce7f96dc1e9024528b88e "pdflatex"
+  "main.run.xml" 1764705089 2395 f2a1fca05fa97d6940e5c3cdcd902eff "pdflatex"
   "main.tex" 1764324943 1292 8c0c3a5805395ece9da62d4779303657 ""
-  "main.toc" 1764611621 3691 5791922b99f32b62246fe453e7474596 "pdflatex"
+  "main.toc" 1764705089 3756 3b03afd36d7ce743f57ecaa3dcac1fd7 "pdflatex"
   "sections/0_titlePage.tex" 1764324893 618 864f9f2ef667666331f34b5bae03e552 ""
   "sections/1_intro.tex" 1764611620 5896 ee934fd2136f9258793c4a7b581fd9df ""
   "sections/2_dynamics.tex" 1764611475 9848 2dbd9dbf9d7052a815f3fbe923e9962d ""
   "sections/3_control.tex" 1764430014 14004 2f4b68cb3fdfa9a922f7b0a3815b84f0 ""
-  "sections/4_setup.tex" 1764610424 7665 95895d11541989b3ce409e2b7097d230 ""
+  "sections/4_setup.tex" 1764705064 8811 b3992965a5201440333052324f58c91d ""
   "sections/5_results.tex" 1764324893 391 cfaadda19899c9b6e5641be970a17606 ""
   "sections/6_conclusion.tex" 1764324893 87 50a793016fde0a307ac517941a20c2ea ""
   (generated)

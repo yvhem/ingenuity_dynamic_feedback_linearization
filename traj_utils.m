@@ -124,13 +124,13 @@ function ref = helix_traj(t)
     ref.psi = 0; ref.psi_dot = 0; ref.psi_ddot = 0;
 end
 
-%% Figure-eight (lemniscate) trajectory
+%% 8-shape trajectory
 function ref = eight_traj(t)
     % Settings of the trajectory
-    scale = 3.0;          % size of the figure-eight
+    scale = 3.0;          % size of the figure eight
     omega_ref = 0.4;      % angular frequency
     altitude = 5.0;       % constant altitude
-    z_rise_time = 25.0;   % time to reach altitude
+    z_rise_time = 0;      % time to reach altitude
     
     % Parametric equations for lemniscate of Gerono
     % x(t) = a * cos(omega*t)
@@ -146,7 +146,7 @@ function ref = eight_traj(t)
     % Velocities
     vx = -scale * omega_ref * sin(wt);
     vy = scale * omega_ref * cos(2 * wt);
-    vz = (t < z_rise_time) * (altitude / z_rise_time);
+    vz = 0;               % set this for z_rise_time != 0
     
     % Accelerations
     ax = -scale * omega_ref^2 * cos(wt);

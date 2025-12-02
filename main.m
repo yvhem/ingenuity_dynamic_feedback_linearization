@@ -3,16 +3,14 @@ clear; clc; close all;
 % Parameters to config by user
 
 wind_enabled = true;                % true = wind on, false = wind off
-wind_direction = 'x';               % 'x', 'y', 'z', 'xy', 'xz', 'yz', 'xyz'
-wind_intensity = 6;                 % force magnitude [N]
+wind_direction = 'z';               % 'x', 'y', 'z', 'xy', 'xz', 'yz', 'xyz'
+wind_intensity = 2;                 % force magnitude [N]
 wind_start_time = 10.0;             % start time [s]
 wind_end_time = 20.0;               % end time [s]
 
-trajectory_type = 'helix';          % 'box', 'helix', 'eight'
+trajectory_type = 'eight';          % 'box', 'helix', 'eight'
 
 t_span = [0 30];                    % [start, end] time [s]
-
-initial_thrust_ratio = 1.0;         % ratio of hover thrust (1.0 = mg)
 
 %% Fixed params
 params.m = 1.8;      % mass [kg]
@@ -54,7 +52,7 @@ end
 
 xi0 = zeros(14,1);
 xi0(3) = 0.0;  % start on the ground (z=0)
-xi0(13) = initial_thrust_ratio * params.m * params.g;  % initial thrust
+xi0(13) = params.m * params.g;  % initial thrust
 
 % run sim
 options = odeset('RelTol', 1e-6, 'AbsTol', 1e-6);
