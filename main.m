@@ -159,8 +159,51 @@ end
 is_saturated = (F_T_hist >= (F_max - 1e-3)) | (F_T_hist <= (F_min + 1e-3));
 saturation_pct = (sum(is_saturated) / length(t)) * 100;
 
-% display results
 fprintf('RMSE position:\t\t%.4f [m]\n', rmse_pos);
 fprintf('MAE:\t\t\t%.4f [m]\n', max_error);
 fprintf('Max error during gust:\t%.4f [m]\n', max_gust_error);
 fprintf('Actuator saturation:\t%.2f %% of flight time\n', saturation_pct);
+
+if ~exist('tables', 'dir')
+    mkdir('tables');
+end
+
+if wind_enabled
+    wind_status = sprintf('_wind_%s', wind_direction);
+else
+    wind_status = '_no_wind';
+end
+table_filename = sprintf('tables/results_%s%s.tex', trajectory_type, wind_status);
+
+fid = fopen(table_filename, 'w');
+
+fprintf(fid, '\\begin{table}[h]\n');
+fprintf(fid, '\\centering\n');
+fprintf(fid, '\\caption{Performance metrics for %s trajectory', trajectory_type);
+if wind_enabled
+    fprintf(fid, ' with wind disturbance (%s direction)', wind_direction);
+end
+fprintf(fid, '}\n');
+fprintf(fid, '\\label{tab:results_%s%s}\n', trajectory_type, strrep(wind_status, '_', '-'));
+fprintf(fid, '\\begin{tabular}{|l|c|}\n');
+fprintf(fid, '\\hline\n');
+fprintf(fid, '\\textbf{Metric} & \\textbf{Value} \\\\\n');
+fprintf(fid, '\\hline\n');
+fprintf(fid, 'Position Tracking Error (RMSE) & %.4f m \\\\\n', rmse_pos);
+fprintf(fid, '\\hline\n');
+fprintf(fid, 'Position Tracking Error (MAE) & %.4f m \\\\\n', max_error);
+fprintf(fid, '\\hline\n');
+
+if wind_enabled && any(idx_gust)
+    fprintf(fid, 'Max Error During Wind Disturbance & %.4f m \\\\\n', max_gust_error);
+    fprintf(fid, '\\hline\n');
+end
+
+fprintf(fid, 'Actuator Saturation & %.2f\\%% \\\\\n', saturation_pct);
+fprintf(fid, '\\hline\n');
+fprintf(fid, '\\end{tabular}\n');
+fprintf(fid, '\\end{table}\n');
+
+fclose(fid);
+
+fprintf('LaTeX table saved to: %s\n', table_filename);
