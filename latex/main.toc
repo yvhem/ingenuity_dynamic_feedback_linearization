@@ -1,51 +1,65 @@
-\contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}%
-\contentsline {section}{\numberline {1.1}The Ingenuity helicopter}{2}{section.1.1}%
-\contentsline {subsection}{\numberline {1.1.1}Control}{3}{subsection.1.1.1}%
-\contentsline {subsubsection}{Dynamic feedback linearization}{3}{section*.4}%
-\contentsline {section}{\numberline {1.2}Objective}{4}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Structure}{4}{section.1.3}%
-\contentsline {chapter}{\numberline {2}Ingenuity dynamic model}{5}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Coordinate frames}{5}{section.2.1}%
-\contentsline {section}{\numberline {2.2}State and input}{5}{section.2.2}%
-\contentsline {paragraph}{State vector}{6}{section*.5}%
-\contentsline {paragraph}{Input vector}{6}{section*.6}%
-\contentsline {section}{\numberline {2.3}Equations of motion}{6}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Kinematics}{6}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Translational dynamics}{7}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}Rotational dynamics}{7}{subsection.2.3.3}%
-\contentsline {section}{\numberline {2.4}Complete state-space model}{8}{section.2.4}%
-\contentsline {chapter}{\numberline {3}Control design}{9}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Dynamic feedback linearization}{9}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Ingenuity DFL}{10}{subsection.3.1.1}%
-\contentsline {subsubsection}{Yaw channel}{10}{section*.7}%
-\contentsline {subsubsection}{Position channel}{10}{section*.8}%
-\contentsline {subsubsection}{Dynamic compensator}{11}{section*.9}%
-\contentsline {subsubsection}{Linearizing control law}{11}{section*.10}%
-\contentsline {paragraph}{Decoupling matrix $\boldsymbol {J}$}{12}{section*.11}%
-\contentsline {paragraph}{Drift vector $\boldsymbol {l}$}{12}{section*.12}%
-\contentsline {paragraph}{Control law}{13}{section*.13}%
-\contentsline {subsubsection}{Outer-loop tracking controller}{13}{section*.14}%
-\contentsline {section}{\numberline {3.2}Control architecture summary}{13}{section.3.2}%
-\contentsline {chapter}{\numberline {4}Simulation setup}{15}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Simulation environment}{15}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Model parameters}{15}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Controller implementation}{16}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Gain tuning}{16}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Actuator saturation}{16}{subsection.4.3.2}%
-\contentsline {paragraph}{Thrust limits}{16}{section*.17}%
-\contentsline {paragraph}{Torque limits}{16}{section*.18}%
-\contentsline {section}{\numberline {4.4}Reference trajectories}{16}{section.4.4}%
-\contentsline {paragraph}{Box trajectory}{17}{section*.19}%
-\contentsline {paragraph}{Helix trajectory}{17}{section*.20}%
-\contentsline {paragraph}{Figure-8 trajectory}{17}{section*.21}%
-\contentsline {section}{\numberline {4.5}Disturbances}{17}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Performance metrics}{18}{section.4.6}%
-\contentsline {paragraph}{Position tracking error}{18}{section*.22}%
-\contentsline {paragraph}{Robustness to disturbances}{18}{section*.23}%
-\contentsline {paragraph}{Actuator saturation}{18}{section*.24}%
-\contentsline {chapter}{\numberline {5}Results}{19}{chapter.5}%
-\contentsline {section}{\numberline {5.1}TODO: task}{19}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Analysis}{19}{section.5.2}%
-\contentsline {chapter}{\numberline {6}Conclusion}{20}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Summary}{20}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Future work}{20}{section.6.2}%
+\contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}The Ingenuity helicopter}{3}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Control}{4}{subsection.1.1.1}%
+\contentsline {subsubsection}{Dynamic feedback linearization}{4}{section*.4}%
+\contentsline {section}{\numberline {1.2}Objective}{5}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Structure}{5}{section.1.3}%
+\contentsline {chapter}{\numberline {2}Ingenuity dynamic model}{6}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Coordinate frames}{6}{section.2.1}%
+\contentsline {section}{\numberline {2.2}State and input}{6}{section.2.2}%
+\contentsline {paragraph}{State vector}{7}{section*.5}%
+\contentsline {paragraph}{Input vector}{7}{section*.6}%
+\contentsline {section}{\numberline {2.3}Equations of motion}{7}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Kinematics}{7}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Translational dynamics}{8}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Rotational dynamics}{8}{subsection.2.3.3}%
+\contentsline {section}{\numberline {2.4}Complete state-space model}{9}{section.2.4}%
+\contentsline {chapter}{\numberline {3}Control design}{10}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Dynamic feedback linearization}{10}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Ingenuity DFL}{11}{subsection.3.1.1}%
+\contentsline {subsubsection}{Yaw channel}{11}{section*.7}%
+\contentsline {subsubsection}{Position channel}{11}{section*.8}%
+\contentsline {subsubsection}{Dynamic compensator}{12}{section*.9}%
+\contentsline {subsubsection}{Linearizing control law}{12}{section*.10}%
+\contentsline {paragraph}{Decoupling matrix $\boldsymbol {J}$}{13}{section*.11}%
+\contentsline {paragraph}{Drift vector $\boldsymbol {l}$}{13}{section*.12}%
+\contentsline {paragraph}{Control law}{14}{section*.13}%
+\contentsline {subsubsection}{Outer-loop tracking controller}{14}{section*.14}%
+\contentsline {section}{\numberline {3.2}Control architecture summary}{14}{section.3.2}%
+\contentsline {chapter}{\numberline {4}Simulation setup}{16}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Simulation environment}{16}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Model parameters}{16}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Controller implementation}{17}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Gain tuning}{17}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Actuator saturation}{17}{subsection.4.3.2}%
+\contentsline {paragraph}{Thrust limits}{17}{section*.17}%
+\contentsline {paragraph}{Torque limits}{17}{section*.18}%
+\contentsline {section}{\numberline {4.4}Reference trajectories}{17}{section.4.4}%
+\contentsline {paragraph}{Box trajectory}{18}{section*.19}%
+\contentsline {paragraph}{Helix trajectory}{18}{section*.20}%
+\contentsline {paragraph}{Figure-8 trajectory}{18}{section*.21}%
+\contentsline {section}{\numberline {4.5}Disturbances}{18}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Performance metrics}{19}{section.4.6}%
+\contentsline {paragraph}{Robustness to disturbances}{19}{section*.22}%
+\contentsline {paragraph}{Actuator saturation}{19}{section*.23}%
+\contentsline {chapter}{\numberline {5}Results}{20}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Nominal performance}{20}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Figure-8 trajectory (constant yaw)}{20}{subsection.5.1.1}%
+\contentsline {paragraph}{Observations}{20}{section*.25}%
+\contentsline {subsection}{\numberline {5.1.2}Helix trajectory (spinning yaw)}{21}{subsection.5.1.2}%
+\contentsline {paragraph}{Observations}{21}{section*.27}%
+\contentsline {section}{\numberline {5.2}Robustness analysis}{22}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Vertical wind on figure-8}{22}{subsection.5.2.1}%
+\contentsline {paragraph}{Setup}{22}{section*.28}%
+\contentsline {paragraph}{Observations}{23}{section*.30}%
+\contentsline {subsection}{\numberline {5.2.2}3D wind on helix}{23}{subsection.5.2.2}%
+\contentsline {paragraph}{Setup}{24}{section*.31}%
+\contentsline {paragraph}{Observations}{24}{section*.33}%
+\contentsline {section}{\numberline {5.3}Complex maneuvering}{25}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Ideal patrolling (no wind)}{25}{subsection.5.3.1}%
+\contentsline {paragraph}{Observations}{25}{section*.35}%
+\contentsline {subsection}{\numberline {5.3.2}Patrolling with environmental noise}{26}{subsection.5.3.2}%
+\contentsline {paragraph}{Observations}{26}{section*.37}%
+\contentsline {chapter}{\numberline {6}Conclusion}{27}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Summary}{27}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Future work}{27}{section.6.2}%

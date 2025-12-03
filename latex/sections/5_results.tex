@@ -1,16 +1,144 @@
 \chapter{Results}\label{ch:Results}
 
-\section{TODO: task}
+In this chapter, we present the simulation results obtained using the control architecture described in Chapter \ref{ch:Control} and the setup defined in Chapter \ref{ch:Setup}. The validation strategy is divided into three parts:
+\begin{enumerate}
+    \item \textit{Nominal performance}: evaluation of the tracking accuracy in ideal conditions to verify the exact cancellation of nonlinearities.
+    \item \textit{Robustness analysis}: assessment of the controller's ability to reject external disturbances while tracking trajectories.
+    \item \textit{Complex maneuvers}: analysis of a "patrol" mission (box trajectory) involving sharp turns and stops, both in the absence and presence of wind disturbances.
+\end{enumerate}
 
-% example of tasks:
+\section{Nominal performance}
+% nominal performance
+% >>> eight no wind, constant yaw
+% >>> helix no wind, spinning
 
-%\section{Hovering performance}
-% plots of ingenuity stabilizing at a point
+We first evaluate the controller in ideal conditions (no wind, perfect model knowledge).  If the model is exact, the nonlinearities should be perfectly cancelled, resulting in linear error dynamics and near-zero tracking error.
 
-%\section{Step response}
-% show controller response to a sudden change in desired position
+\subsection{Figure-8 trajectory (constant yaw)}
+In this scenario, the helicopter follows the figure-8 path at a constant altitude and fixed heading ($\psi=0$), forcing Ingenuity to fly sideways and backwards to follow the curve, relying heavily on the linearization of the coupling between body velocities and position.
 
-%\section{Trajectory tracking results}
-% plot desired vs. actual traj in 3D and individual coords over time
+Figure \ref{fig:res_eight_nonminal} shows the resulting trajectory and tracking errors.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/plots/eight/no_wind/summary_none_constant.png}
+    \caption{Nominal performance on the figure-8 trajectory with constant yaw ($\psi=0$).}
+    \label{fig:res_eight_nonminal}
+\end{figure}
 
-\section{Analysis}
+\paragraph{Observations}
+\begin{itemize}
+    \item \textit{Tracking accuracy}: the actual trajectory (solid blue line) closely follows the reference path (dashed black line), almost superimposing on it. Ingenuity manages to transition from the vertical takeoff phase to the periodic figure-8 motion without any noticeable deviation or overshoot.
+    \item \textit{Phases and altitude}: the maneuver begins with a rapid ascent to the target altitude of 5 m: as we can see from the altitude and thrust plots, this aggressive takeoff demands a thrust force significantly higher than the hovering value ($mg \approx 6.6$ N). The altitude settles at $t \approx 5$ s and remains constant throughout the periodic motion, demonstrating that the DFL controller correctly compensates for the loss of vertical lift when the vehicle tilts to perform lateral maneuvers.
+    \item \textit{Control effort}: from the thrust plot we observe that the commanded thrust (red dotted line) exceeds the physical limit of the actuators during the initial ascent ($t < 2$ s). The blue line shows the applied thrust being capped at $F_\text{max} \approx 9.6$ N, for a saturation of $13.40\%$.
+    \item \textit{Attitude}: the roll $\phi$ and pitch $\theta$ angles show a clean periodic sinusoidal behavior required to trace the curves, while the yaw $\psi$  remains constant at zero as expected.
+\end{itemize}
+
+\subsection{Helix trajectory (spinning yaw)}
+This test is significantly more challenging because Ingenuity ascends while performing a circular motion and simultaneously rotating around its vertical axis ($\dot{\psi} = 0.5$ rad/s), requiring the controller to constantly adjust the roll and pitch actuation to maintain the correct thrust direction while the body frame is rotating.
+
+Figure \ref{fig:res_helix_nominal} illustrates the performance.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/plots/helix/no_wind/summary_none_spinning.png}
+    \caption{Nominal performance on the helix trajectory with spinning yaw.}
+    \label{fig:res_helix_nominal}
+\end{figure}
+
+\paragraph{Observations}
+\begin{itemize}
+    \item \textit{Tracking accuracy}: despite the continuous rotation of the body frame (visible in the attitude plot where $\psi$ increases linearly), the tracking is excellent. This confirms that the dynamic feedback linearization effectively compensates for the changing orientation of the thrusters relative to the inertial path.
+    \item \textit{Altitude and thrust}: the altitude tracking follows a linear ramp ($v_z= 0.2$ m/s) until $t=25$ s. From the thrust plot, we observe an initial pulse to accelerate upwards, a steady-state value slightly above hovering to maintain vertical velocity against drag, and a sharp dip at $t=25$ s to arrest the vertical motion and settle at $z=5$ m.
+    \item \textit{Actuation}: unlike the previous aggressive takeoff, this smooth ascent keeps the commanded thrust within the physical limits, resulting in no saturation.
+    \item \textit{Attitude}: the controller keeps $\phi$ and $\theta$ at small and bounded values necessary to generate the centripetal acceleration for the helix, decoupled from the yaw rotation.
+\end{itemize}
+
+\section{Robustness analysis}
+Real-world operations on Mars are subject to atmospheric disturbances. To test the robustness of the outer linear tracking loop, we introduce unmodeled wind gusts during the flight.
+
+\subsection{Vertical wind on figure-8}
+We apply a vertical wind gust (along the inertial $z$-axis) while the helicopter tracks the planar figure-8. This specifically stresses the thrust dynamic compensator, as the controller must adapt the total thrust to maintain altitude against an unmodeled lift/downforce.
+
+\paragraph{Setup}
+\begin{itemize}
+    \item \textbf{Wind direction:} $z$-axis.
+    \item \textbf{Intensity:} 2 N ($\approx 30\%$ of the vehicle's weight).
+    \item \textbf{Duration:} $t \in [10, 15]$ s.
+\end{itemize}
+Figure \ref{fig:res_eight_wind_z} shows the system response.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/plots/eight/wind/summary_z_constant.png}
+    \caption{Robustness test: figure-8 trajectory with vertical wind gust.}
+    \label{fig:res_eight_wind_z}
+\end{figure}
+
+\paragraph{Observations}
+\begin{itemize}
+    \item \textit{Altitude deviation}: the unmodeled 2 N downward force causes a sudden altitude drop starting at $t=10$ s (indicated by the gray shaded area). The vehicle is pushed down from its setpoint of 5 m to a minimum altitude of approximately 3.4 m before the controller generates enough thrust to arrest the descent.
+    \item \textit{Thrust adaptation}: as the position error increases, the commanded thrust spikes up to around 9.2 N (close to saturation) to counteract the wind and regain altitude.
+    \item \textit{Recovery}: immediately after the wind stops ($t > 15$ s), the accumulated high thrust causes the drone to accelerate upwards. The controller quickly reduces the power to dampen the motion, resulting in a smooth convergence back to the 5 m setpoint with no overshoot.
+\end{itemize}
+
+\subsection{3D wind on helix}
+We subject the helicopter to a general wind disturbance acting on all three axes ($x, y, z$) while tracking the helix trajectory. This tests the ability of the linear outer loops to generate appropriate virtual inputs $\bs{v}$ to counteract the drift.
+
+\paragraph{Setup}
+\begin{itemize}
+    \item \textbf{Wind direction:} $xyz$.
+    \item \textbf{Intensity:} 2 N.
+    \item \textbf{Duration:} $t \in [8, 11]$ s.
+\end{itemize}
+Figure \ref{fig:res_helix_wind_xyz} illustrates the results.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/plots/helix/wind/summary_xyz_constant.png}
+    \caption{Robustness test: helix trajectory with 3D wind gust.}
+    \label{fig:res_helix_wind_xyz}
+\end{figure}
+
+\paragraph{Observations}
+\begin{itemize}
+    \item \textit{Transient response}: the altitude plot shows a brief dip during the wind gust, lifting the helicopter off the desired path for a peak error of approximately 2 m.
+    \item \textit{Controller reaction}: the controller reacts by drastically reducing the thrust from $\approx 6.7$ N down to $\approx 5.1$ N (below hovering), attempting to use gravity to counte the lift caused by the wind; moreover, the attitude plot shows sharp spikes in $\phi$ and $\theta$, indicating the controller is also tilting the vehicle to generate lateral forces to oppose the horizontal components of the wind.
+    \item \textit{Recovery}: when the wind stops at $t=11$ s, the helicopter is left with low thrust and no supporting wind, causing it to rapidly descend. The controller immediately responds with a thrust spike back to $\approx 7.3$ N to converge back to the reference trajectory, achieving stable flight again by $t \approx 16$ s.
+\end{itemize}
+
+\section{Complex maneuvering}
+Finally, we simulate a patrol mission using the box trajectory. Unlike the previous continuous curves, this trajectory involves straight lines connected by sharp 90-degree turns, requiring the vehicle to accelerate, decelerate, and stop accurately.
+
+\subsection{Ideal patrolling (no wind)}
+We first perform the maneuver in ideal conditions to evaluate the transient response of the controller at the corners.
+
+Figure \ref{fig:res_box_nominal} shows the results.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/plots/box/no_wind/summary_none_constant.png}
+    \caption{Complex maneuvering: box trajectory in ideal conditions.}
+    \label{fig:res_box_nominal}
+\end{figure}
+
+\paragraph{Observations}
+\begin{itemize}
+    \item \textit{Corner performance}: the trajectory tracking plot shows overshoot at the corners of the square path: despite the smoothness of the quintic reference, the inertia of the vehicle prevents an instantaneous turn.
+    \item \textit{Aggressive actuation}: from the thrust and attitude plots we can observe the aggressive nature of the maneuver. The roll and pitch angles spike spike to nearly $\pm 40^\circ$ to generate necessary braking and turning forces; similarly, the thrust oscillates significantly between hovering and approximately 9 N.
+    \item \textit{Saturation}: the initial takeoff phase caused the commanded thrust to saturate ($5.31 \%$ of the flight time). We can also note that the peaks of the oscillations are very close to the physical limit. 
+\end{itemize}
+
+\subsection{Patrolling with environmental noise}
+To simulate a realistic scenario, we repeat the patrol mission with a constant, random wind acting in all directions throughout the entire flight. This represents background atmospheric turbulence rather than a specific strong gust.
+
+Figure \ref{fig:res_box_wind} presents the performance.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/plots/box/wind/summary_xyz_constant.png}
+    \caption{Complex maneuvering: box trajectory with continuous environmental disturbance.}
+    \label{fig:res_box_wind}
+\end{figure}
+
+\paragraph{Observations}
+\begin{itemize}
+    \item \textit{Steady-state drift}: the controller maintains stability and traces the square shape of the patrol; however, there is a noticeable persistent offset from the reference path due to the constant wind: the helicopter hovers at $z \approx 6.5$ m instead of the desired 5 m, and the 3D plot shows a lateral shift. The maximum tracking error recorded was 5 m.
+    \item \textit{Analysis of the disturbance}: the thrust settles at an unstable value around 6 N, that is lower than hovering because the wind helps to lift the vehicle, and the controller reduces the power to compensate. We can also see how $\theta$ stabilizes at a non-zero angle ($\approx 18^\circ$) at the end of the flight, indicating Ingenuity is constantly tilted to fight the lateral wind.
+    \item \textit{Saturation}: interestingly, the actuator saturation dropped to $3.64\%$, lower than the $5.31\%$ of the ideal case. This is consistent with the lower thrust requirement due to the wind "assistance". 
+\end{itemize}

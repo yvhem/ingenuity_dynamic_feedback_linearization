@@ -1,4 +1,4 @@
-function dxi_ext = ingenuity_closed_loop(t, xi_ext, p, trajectory_type)
+function dxi_ext = ingenuity_closed_loop(t, xi_ext, p, traj_config)
     % extended state
     P = xi_ext(1:3);
     V_b = xi_ext(4:6);
@@ -11,7 +11,7 @@ function dxi_ext = ingenuity_closed_loop(t, xi_ext, p, trajectory_type)
     F_T_dot = xi_ext(14);
 
     % reference trajectory
-    ref = traj_utils(t, trajectory_type);
+    ref = traj_utils(t, traj_config.type, traj_config.yaw_mode);
     
     % rotation matrix from body to inertial frame
     cph = cos(phi); sph = sin(phi);

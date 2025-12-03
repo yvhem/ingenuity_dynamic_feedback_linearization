@@ -58,7 +58,7 @@ We define a set of reference trajectories to test the performance of the control
 
 The controller requires the reference to be smooth up to the fourth derivative (snap) for the position; therefore, all trajectories are generated analytically or via polynomials.
 
-\paragraph{Box trajectory} This trajectory simulates a patrol mission: the helicopter takes off to an altitude of 5 meters and then follows a square path with a side length of 10 meters. The motion along each segment is generated using quintic polynomials to ensure smooth transitions in position, velocity, acceleration, jerk, and snap. The yaw angle is kept constant at zero throughout the trajectory
+\paragraph{Box trajectory} This trajectory simulates a patrol mission: the helicopter takes off to an altitude of 5 meters and then follows a square path with a side length of 10 meters. The motion along each segment is generated using quintic polynomials to ensure smooth transitions in position, velocity, acceleration, jerk, and snap. The yaw angle is kept constant at zero throughout the trajectory.
 
 \paragraph{Helix trajectory} This trajectory requires the helicopter to ascend while performing a circular motion. It is defined analyitically as:
 \[  \begin{cases}
@@ -78,7 +78,7 @@ where the radius is $R=2$ m, the angular rate is $\omega_\text{ref} = 0.5$ rad/s
 \end{equation}
 where the scale is $A=3.0$ m and the frequency is $\omega_\text{ref} = 0.4$ rad/s.
 
-\section{Disturbances}
+\section{Disturbances}\label{sec:disturbances}
 To verify the robustness of the controller, we simulate an external wind gust disturbance. The wind is modeled as a constant force vector $\bs{F}_\text{wind}$ acting on the center of mass in the inertial frame.
 
 The disturbance can be configured in terms of:
@@ -96,11 +96,6 @@ Since the DFL controller relies on model cancellation, this external force acts 
 
 \section{Performance metrics}
 To quantitatively evaluate the controller, we compute the following metrics based on the discrete simulation data sampled at time steps $t_k$, for $k=1, \dots, N$.
-
-\paragraph{Position tracking error} We evaluate the global tracking performance using the \textit{root mean square error} (RMSE) and the \textit{maximum absolute error} (MAE) $e_\text{max}$. The latter is particularly important for \textit{safety}, as it represents the closest the drone came to deviating dangerously from the path.
-\begin{equation}
-    E_\text{RMSE} = \sqrt{\frac{1}{N} \sum_{k=1}^N \|\bs{e}_P(t_k)\|^2}, \quad e_{\max} = \max_{k} \|\bs{e}_P(t_k)\|
-\end{equation}
 
 \paragraph{Robustness to disturbances} To assess the controller's ability to reject unmodeled dynamics, we compute the maximum tracking error specifically during the wind gust interval ($t \in [t_\text{start}, t_\text{end}]$ s):
 \begin{equation}

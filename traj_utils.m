@@ -1,8 +1,8 @@
-function ref = traj_utils(t, type)
+function ref = traj_utils(t, type, yaw_mode)
     % Generates reference trajectories.
     
-    if nargin < 2
-        type = 'none';
+    if nargin < 3
+        yaw_mode = 'constant';
     end
     
     switch lower(type)
@@ -12,6 +12,17 @@ function ref = traj_utils(t, type)
             ref = eight_traj(t);
         otherwise
             ref = helix_traj(t);
+    end
+
+    if strcmp(yaw_mode, 'spinning')
+        omega_spin = 0.5;
+        ref.psi = omega_spin * t;
+        ref.psi_dot = omega_spin;
+        ref.psi_ddot = 0;
+    else
+        ref.psi = 0;
+        ref.psi_dot = 0;
+        ref.psi_ddot = 0;
     end
 end
 
@@ -74,13 +85,6 @@ function ref = box_traj(t)
     ref.acc  = Dist * (s_d2 * scale_a);
     ref.jerk = Dist * (s_d3 * scale_j);
     ref.snap = Dist * (s_d4 * scale_s);
-    
-    % Yaw
-    % Setting to 0 means we keep alway the same yaw angle
-    % we could modifiy this to face the direction of travel
-    ref.psi = 0; 
-    ref.psi_dot = 0; 
-    ref.psi_ddot = 0;
 end
 
 %% Helix trajectory
@@ -118,10 +122,6 @@ function ref = helix_traj(t)
     % Set state
     ref.pos = [x; y; z]; ref.vel = [vx; vy; vz]; ref.acc = [ax; ay; az];
     ref.jerk = [jx; jy; jz]; ref.snap = [sx; sy; sz];
-
-    % Set yaw
-    % Also here as in the box trajcetory yaw is not of interest
-    ref.psi = 0; ref.psi_dot = 0; ref.psi_ddot = 0;
 end
 
 %% 8-shape trajectory
@@ -169,9 +169,4 @@ function ref = eight_traj(t)
     ref.acc = [ax; ay; az];
     ref.jerk = [jx; jy; jz];
     ref.snap = [sx; sy; sz];
-    
-    % Set yaw
-    ref.psi = 0;
-    ref.psi_dot = 0;
-    ref.psi_ddot = 0;
 end
