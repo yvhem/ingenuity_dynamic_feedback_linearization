@@ -1,11 +1,11 @@
 # Fdb version 3
-["biber main"] 1764755219 "main.bcf" "main.bbl" "main" 1764757100
-  "main.bcf" 1764757099 106948 44b564644d09c7ae649714e12a178476 "pdflatex"
+["biber main"] 1764755219 "main.bcf" "main.bbl" "main" 1764759246
+  "main.bcf" 1764759246 106948 44b564644d09c7ae649714e12a178476 "pdflatex"
   "ref.bib" 1764403689 2502 4a7f087ab3fe0a7b124f70361e3b8018 ""
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1764757097 "/home/yvhem/OneDrive/Uni/AIRO/Modeling and Control of Multi-Rotor UAVs/ingenuity_dynamic_feedback_linearization/latex/main.tex" "main.pdf" "main" 1764757100
+["pdflatex"] 1764759244 "/home/yvhem/OneDrive/Uni/AIRO/Modeling and Control of Multi-Rotor UAVs/ingenuity_dynamic_feedback_linearization/latex/main.tex" "main.pdf" "main" 1764759246
   "/etc/texmf/web2c/texmf.cnf" 1754997670 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/yvhem/OneDrive/Uni/AIRO/Modeling and Control of Multi-Rotor UAVs/ingenuity_dynamic_feedback_linearization/latex/main.tex" 1764352639 1236 8c0c3a5805395ece9da62d4779303657 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -237,19 +237,19 @@
   "images/plots/helix/no_wind/summary_none_spinning.png" 1764751977 169274 6b796fe4055e9c699374a5ac9c825054 ""
   "images/plots/helix/wind/summary_xyz_constant.png" 1764755104 191527 1cd757b7f50fdbf4262d21ac67b3e803 ""
   "images/swashplate.png" 1764051878 41601 9a96edef9eaab7eeaf05fff984241e36 ""
-  "main.aux" 1764757099 15486 33737fd7feb5d04331898501913d477d "pdflatex"
+  "main.aux" 1764759246 15486 4e281281b92365a4b7dfc68ade7fcb73 "pdflatex"
   "main.bbl" 1764755220 9261 bad118286c33cf11dcd0dfd1cae696ba "biber main"
-  "main.out" 1764757099 5916 4739a887efa49d1a4cc7e3dc7f421fc4 "pdflatex"
-  "main.run.xml" 1764757099 2395 1575f6bbc0c6be1b1dbf4e9f7ecaa5c6 "pdflatex"
+  "main.out" 1764759246 5916 4739a887efa49d1a4cc7e3dc7f421fc4 "pdflatex"
+  "main.run.xml" 1764759246 2395 1575f6bbc0c6be1b1dbf4e9f7ecaa5c6 "pdflatex"
   "main.tex" 1764352639 1236 8c0c3a5805395ece9da62d4779303657 ""
-  "main.toc" 1764757099 4832 2d6ddc59f42cf07754880b9233e441ce "pdflatex"
+  "main.toc" 1764759246 4832 2d6ddc59f42cf07754880b9233e441ce "pdflatex"
   "sections/0_titlePage.tex" 1763929690 595 864f9f2ef667666331f34b5bae03e552 ""
   "sections/1_intro.tex" 1764613279 5851 ee934fd2136f9258793c4a7b581fd9df ""
   "sections/2_dynamics.tex" 1764613279 9710 2dbd9dbf9d7052a815f3fbe923e9962d ""
   "sections/3_control.tex" 1764403689 13831 2f4b68cb3fdfa9a922f7b0a3815b84f0 ""
   "sections/4_setup.tex" 1764745746 8240 26c367d9bc0f50f4393f19279bfa17b6 ""
   "sections/5_results.tex" 1764757097 11858 58f04c88e879fb9ba713415005383a54 ""
-  "sections/6_conclusion.tex" 1763983651 83 50a793016fde0a307ac517941a20c2ea ""
+  "sections/6_conclusion.tex" 1764759242 3406 d6fe8119e26f5fa8a9f70ee11c1ea30e ""
   (generated)
   "main.aux"
   "main.bcf"
