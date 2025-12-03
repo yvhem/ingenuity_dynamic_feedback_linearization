@@ -2,13 +2,13 @@ clear; clc; close all;
 
 % Parameters to config by user
 
-wind_enabled = true;                % true = wind on, false = wind off
-wind_direction = 'z';               % 'x', 'y', 'z', 'xy', 'xz', 'yz', 'xyz'
+wind_enabled = false;                % true = wind on, false = wind off
+wind_direction = 'x';               % 'x', 'y', 'z', 'xy', 'xz', 'yz', 'xyz'
 wind_intensity = 2;                 % force magnitude [N]
 wind_start_time = 10.0;             % start time [s]
 wind_end_time = 20.0;               % end time [s]
 
-trajectory_type = 'eight';          % 'box', 'helix', 'eight'
+trajectory_type = 'box';          % 'box', 'helix', 'eight'
 
 t_span = [0 30];                    % [start, end] time [s]
 
@@ -58,6 +58,7 @@ xi0(13) = params.m * params.g;  % initial thrust
 options = odeset('RelTol', 1e-6, 'AbsTol', 1e-6);
 [t, xi] = ode15s(@(t,x) ingenuity_closed_loop(t, x, params, trajectory_type), t_span, xi0, options);
 
+%%
 F_T_hist = xi(:, 13);
 
 ref_vals = [];
@@ -66,6 +67,7 @@ for i = 1:length(t)
     r = traj_utils(ti, trajectory_type); 
     ref_vals = [ref_vals; r.pos'];
 end
+
 
 % disturbance timing
 t_start = params.gust_start;
@@ -205,3 +207,10 @@ fprintf(fid, '\\end{table}\n');
 fclose(fid);
 
 fprintf('LaTeX table saved to: %s\n', table_filename);
+
+%%
+clc;
+animation_2d(xi, t, trajectory_type, params, 10)
+%%
+clc;
+animation_3d(xi, t, trajectory_type, params, 30);
