@@ -1,5 +1,23 @@
 \chapter{Conclusion}\label{ch:Conclusion}
 
+In this project, we analyzed the dynamics of the Ingenuity Mars helicopter and designed a nonlinear control system based on \textit{dynamic feedback linearization} (DFL) to achieve precise trajectory tracking.
+
 \section{Summary}
+We started by deriving the mathematical model of the co-axial helicopter using Newton-Euler equations. We identified that the system is underactuated and strongly coupled, making standard linear control techniques insufficient. By analyzing the system's input-output dynamics, we determined that the position outputs require four differentiations to reveal the thrust input. Consequently, we designed a dynamic compensator to augment the system state, allowing us to fully linearize the dynamics and decouple the translational and rotational motions.
+
+The proposed controller was validated through simulations in MATLAB under various flight conditions. The results lead to the following conclusions:
+\begin{itemize}
+    \item \textit{Nominal performance}: in ideal conditions with perfect model knowledge, the DFL controller achieves excellent tracking accuracy. This was demonstrated in the figure-8 and helix trajectories, where the helicopter followed the reference path with negligible error, even while spinning around its vertical axis.
+    \item \textit{Robustness}: the controlled showed good stability when subjected to temporary wind gusts. Although unmodeled forces caused transient deviations, the outer linear loop successfully stabilized the vehicle back to the reference trajectory once the disturbance ended.
+    \item \textit{Physical limitations}: while DFL assumes unlimited control authority, real actuators have saturation limits which must be taken into account in practical implementations.
+    \item \textit{Steady-state error}: the simulation with continuous environmental noise showed a limitation: while Ingenuity remained stable, the lack of integral action resulted in a constant steady-state offset.
+\end{itemize}
 
 \section{Future work}
+Based on the findings and limitations observed during this project, several improvements can be explored in future work:
+\begin{enumerate}
+    \item \textit{Integral action}: to eliminate the steady-state error observed in the presence of constant wind, the outer-loop PD controller should be upgraded to a PID controller. The integral term would accumulate the error over time and generate the necessary virtual input to cancel out persistent disturbances.
+    \item \textit{Constraint handling}: DFL does not explicitly handle actuator limits. To prevent saturation during aggressive maneuvers, the reference trajectories could be optimized to respect the physical constraints of the vehicle.
+    \item \textit{Parameter uncertainty}: DFL relies on exact cancellation of nonlinear terms, which requires precise knowledge of the model parameters (mass, inertia, drag). In a real-world scenario, these parameters are not known perfectly, and an adaptive control law or a robust sliding mode controller (such as passivity-based control) could be implemented to handle parameter uncertainties.
+    \item \textit{State estimation}: in our simulations we assumed that the full state was perfectly known. In reality, these measurements come from noisy sensors (IMU, cameras) and must be filtered, for example using an \textit{Extended Kalman Filter} (EKF).
+\end{enumerate}
