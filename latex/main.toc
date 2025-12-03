@@ -29,12 +29,12 @@
 \contentsline {chapter}{\numberline {4}Simulation setup}{16}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Simulation environment}{16}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Model parameters}{16}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Controller implementation}{17}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Gain tuning}{17}{subsection.4.3.1}%
+\contentsline {section}{\numberline {4.3}Controller implementation}{16}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Gain tuning}{16}{subsection.4.3.1}%
 \contentsline {subsection}{\numberline {4.3.2}Actuator saturation}{17}{subsection.4.3.2}%
 \contentsline {paragraph}{Thrust limits}{17}{section*.17}%
 \contentsline {paragraph}{Torque limits}{17}{section*.18}%
-\contentsline {section}{\numberline {4.4}Reference trajectories}{17}{section.4.4}%
+\contentsline {section}{\numberline {4.4}Reference trajectories}{18}{section.4.4}%
 \contentsline {paragraph}{Box trajectory}{18}{section*.19}%
 \contentsline {paragraph}{Helix trajectory}{18}{section*.20}%
 \contentsline {paragraph}{Figure-8 trajectory}{18}{section*.21}%

@@ -3,7 +3,7 @@
 In this chapter, we describe the simulation environment used to validate the control law computed in Chapter \ref{ch:Control}. We define the physical parameters of the Ingenuity helicopter, the controller tuning, the reference trajectories used for testing, the external disturbances applied to check robustness, and the performance metrics used to evaluate the results.
 
 \section{Simulation environment}
-The simulation is implemented in MATLAB. Since the system dynamics derived in Chapter \ref{ch:Dynamics} are nonlinear and continuous in time, we use a standard numerical solver for ordinary differential equations (\texttt{ode15s}) to integrate the system dynamics.
+The simulation is implemented in MATLAB. Since the system dynamics derived in Chapter \ref{ch:Dynamics} are nonlinear and continuous in time, we use a standard numerical solver for ordinary differential equations (\texttt{ode15s}) to integrate the system dynamics. The complete source code for the project, including the dynamic model and the controller implementation, is available on GitHub\footnote{\url{https://github.com/yvhem/ingenuity_dynamic_feedback_linearization/tree/main}}.
 
 All the simulations are run with a variable time step to ensure numerical stability, but the results are analyzed and plotted over a fixed time span of $T=30$ seconds. The initial condition for all simulations corresponds to Ingenuity being on the ground (zero altitude) and the rotors spinning to generate a thrust equal to the vehicle's weight (hovering condition), to simulate a realistic takeoff scenario.
 
