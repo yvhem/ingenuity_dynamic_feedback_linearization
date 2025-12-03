@@ -250,3 +250,7 @@ saturation_pct = (sum(is_saturated) / length(t)) * 100;
 
 fprintf('Max error during gust:\t%.4f [m]\n', max_gust_error);
 fprintf('Actuator saturation:\t%.2f %% of flight time\n', saturation_pct);
+
+%% animations
+animation_2d(xi, t, traj_config.type, params, 60);
+animation_3d(xi, t, traj_config.type, params, 60);
