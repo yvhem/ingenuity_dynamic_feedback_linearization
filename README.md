@@ -68,3 +68,6 @@ This is the main simulation that demonstrates the performance of the DFL traject
 ## Report
 
 The `latex/` directory contains the final project report in PDF format (`main.pdf`) along with all the LaTeX source files used to generate it. The report provides a detailed theoretical background, the full mathematical derivation of the DFL controller, and an analysis of the simulation results.
+
+## Project's video
+[![Project Video](docs/IngenuityThumbnail.jpg)](https://drive.google.com/file/d/1_vTtB5cl0AW1hI1-qq9r-FEiWNpFcF7R/view?usp=share_link)
