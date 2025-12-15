@@ -1,8 +1,16 @@
-function animation_3d(xi, t, trajectory_type, params, target_fps)
+function animation_3d(xi, t, trajectory_type, params, target_fps, filename, show_window)
     % inputs
+    if nargin < 7, show_window = true; end 
+    if nargin < 6, filename = []; end      
     if nargin < 5, target_fps = 30; end 
     if nargin < 3 || isempty(trajectory_type)
         trajectory_type = "box";
+    end
+    
+    % if no filename is provided, we show the window
+    if isempty(filename) && ~show_window
+        warning('No filename provided. Forcing window to be visible.');
+        show_window = true;
     end
     
     %% Wind and vector logic
@@ -17,7 +25,6 @@ function animation_3d(xi, t, trajectory_type, params, target_fps)
     end
     
     %% Reference trajectory
-
     ref_vals = [];
     if exist('traj_utils', 'file')
         for i = 1:length(t)
@@ -36,12 +43,14 @@ function animation_3d(xi, t, trajectory_type, params, target_fps)
     max_bounds = max(all_points);
     scene_center = (min_bounds + max_bounds) / 2;
     scene_span = max(max_bounds - min_bounds) / 2 * 1.5; 
-
     fprintf('Starting Animation setup...\n');
     
     %% Figure
-    
-    anim_fig = figure('Name', 'Ingenuity Flight 3D', 'Color', 'w');
+    if show_window, vis_str = 'on'; else, vis_str = 'off'; end
+
+    anim_fig = figure('Name', 'Ingenuity Flight 3D', 'Color', 'w', ...
+                      'Visible', vis_str);
+    set(anim_fig, 'Position', [100, 100, 1280, 720]); 
     ax = axes(anim_fig);
     axis equal; grid on;
     view(30, 20);
@@ -65,17 +74,14 @@ function animation_3d(xi, t, trajectory_type, params, target_fps)
         addBody(robot, body, 'base');
     end
     
-    % Create Robot Container
     hg_robot = hgtransform('Parent', ax);
     
-    % Render Objects
     objs_before = allchild(ax);
     show(robot, 'Parent', ax, 'Frames', 'off', 'Visuals', 'on', 'Collisions', 'off');
     objs_after = allchild(ax);
     robot_parts = setdiff(objs_after, objs_before);
     set(robot_parts, 'Parent', hg_robot);
     
-    % Colors/Textures
     all_patches = findobj(robot_parts, 'Type', 'Patch');
     for i = 1:length(all_patches)
         p = all_patches(i);
@@ -86,11 +92,9 @@ function animation_3d(xi, t, trajectory_type, params, target_fps)
         elseif contains(p.DisplayName, 'Leg'), p.FaceColor = [0.1 0.1 0.1]; end
     end
     
-    % Initial Orientation Fix
     geom_fix = makehgtform('xrotate', pi/2); 
     set(hg_robot, 'Matrix', geom_fix);
     
-    % Plotting trajectories
     if ~isempty(ref_vals)
         plot3(ref_vals(:,1), ref_vals(:,2), ref_vals(:,3),'r--', 'Parent', ax, 'LineWidth', 1.5, 'DisplayName', 'Reference');
     end
@@ -98,25 +102,42 @@ function animation_3d(xi, t, trajectory_type, params, target_fps)
     h_wind = quiver3(0,0,0, 0,0,0, 'r', 'LineWidth', 3, 'MaxHeadSize', 0.5,'DisplayName', 'Wind Gust', 'AutoScale', 'off');
     h_thrust = quiver3(0,0,0, 0,0,0, 'b', 'LineWidth', 2, 'MaxHeadSize', 0.5,'DisplayName', 'Thrust Dir', 'AutoScale', 'off');
     legend([findobj(ax, 'DisplayName', 'Reference'), findobj(ax, 'DisplayName', 'Actual'), h_wind, h_thrust],'Location', 'northeast');
-    
-    %% Animation loop
+    %% Video Writer Setup
+    save_video = false;
+    v_writer = [];
+    if ~isempty(filename)
+        save_video = true;
+        fprintf('Video recording enabled: %s\n', filename);
+        v_writer = VideoWriter(filename, 'MPEG-4'); 
+        v_writer.FrameRate = target_fps;
+        v_writer.Quality = 95; 
+        open(v_writer);
+    end
 
+    %% Animation loop
     fps = target_fps;
     dt_frame = 1 / fps; 
     t_uniform = t(1) : dt_frame : t(end);
-    
-    % 2. Interpolate data
     xi_uniform = interp1(t, xi, t_uniform, 'linear');
     
-    % Camera settings
-    start_zoom = 0.8;      
-    zoom_delay = 1.0;       
-    zoom_duration = 3.0;    
+    start_zoom = 0.8; zoom_delay = 1.0; zoom_duration = 3.0;    
     
     disp("3D Animation started...")
+    
+    % --- progress bar ---
+    h_wait = waitbar(0, 'Initializing...', 'Name', 'Rendering Animation', ...
+        'CreateCancelBtn', 'setappdata(gcbf,''canceling'',1)');
+    setappdata(h_wait, 'canceling', 0);
+    
     start_time = tic;
-    for i = 1:length(t_uniform)
-        if ~isvalid(anim_fig), break; end 
+    total_frames = length(t_uniform);
+    
+    for i = 1:total_frames
+        if show_window && ~isvalid(anim_fig), break; end 
+        if getappdata(h_wait, 'canceling')
+            fprintf('Animation cancelled by user.\n');
+            break;
+        end
         
         current_time = t_uniform(i);
         
@@ -137,10 +158,8 @@ function animation_3d(xi, t, trajectory_type, params, target_fps)
             geom_fix;   
         set(hg_robot, 'Matrix', M);
         
-        % Update Light
         camlight(cam_light, 'headlight');
         
-        % Update Vectors
         if wind_enabled && current_time >= t_gust_start && current_time <= t_gust_end
             set(h_wind, 'XData', pos(1), 'YData', pos(2), 'ZData', pos(3), ...
                         'UData', wind_vec(1), 'VData', wind_vec(2), 'WData', wind_vec(3));
@@ -169,13 +188,38 @@ function animation_3d(xi, t, trajectory_type, params, target_fps)
         
         title(sprintf('Time: %.2fs | Alt: %.1fm', current_time, pos(3)));
         
-        drawnow limitrate;
+        % update progress bar
+        if mod(i, 5) == 0
+            waitbar(i/total_frames, h_wait, ...
+                sprintf('Rendering: %.0f%% (Time: %.1fs / %.1fs)', ...
+                (i/total_frames)*100, current_time, t_uniform(end)));
+        end
         
-        elapsed = toc(start_time);
-        expected = (i - 1) * dt_frame;
-        if elapsed < expected
-            pause(expected - elapsed);
+        % save logic
+        if save_video
+            drawnow;
+            frame = getframe(anim_fig);
+            writeVideo(v_writer, frame);
+        else
+            drawnow limitrate;
+            elapsed = toc(start_time);
+            expected = (i - 1) * dt_frame;
+            if elapsed < expected
+                pause(expected - elapsed);
+            end
         end
     end
+    
+    delete(h_wait);
+    
+    if save_video
+        close(v_writer);
+        fprintf('Video saved successfully to %s\n', filename);
+    end
+    
+    if ~show_window && isvalid(anim_fig)
+        close(anim_fig);
+    end
+    
     fprintf('Animation ended.\n');
 end
